@@ -881,7 +881,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .support-button {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   min-height: 36px;
   border: 0;
   border-radius: var(--radius-pill);
@@ -894,14 +894,19 @@ input[type="number"]::-webkit-outer-spin-button {
   transition: opacity 160ms ease, background-color 160ms ease;
 }
 
+.support-button span {
+  font-family: var(--font-geist-pixel);
+  letter-spacing: 0;
+}
+
 .support-button:hover {
   opacity: 0.86;
 }
 
 .support-button img {
   display: block;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   transform-origin: center;
   transition: transform 180ms ease;
