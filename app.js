@@ -50,6 +50,9 @@ const copy = {
     threeWeekly: "3 пъти седмично",
     custom: "Персонално",
     disclaimer: "Това е калкулатор за конвертиране на стойности, не медицински съвет.",
+    supportText: "Харесва ти калкулаторът?",
+    supportButton: "Buy me a Monster",
+    supportAria: "Buy me a Monster",
     syringeEmpty: "U-100 спринцовка: непълно изчисление",
   },
   en: {
@@ -87,6 +90,9 @@ const copy = {
     threeWeekly: "3x weekly",
     custom: "Custom",
     disclaimer: "This is a value conversion calculator, not medical advice.",
+    supportText: "Like this calculator?",
+    supportButton: "Buy me a Monster",
+    supportAria: "Buy me a Monster",
     syringeEmpty: "U-100 syringe: incomplete calculation",
   },
 };
@@ -132,6 +138,7 @@ const buttons = {
 
 const panels = document.querySelectorAll("[data-panel]");
 const i18nNodes = document.querySelectorAll("[data-i18n]");
+const i18nAriaNodes = document.querySelectorAll("[data-i18n-aria]");
 const optionNodes = document.querySelectorAll("[data-i18n-option]");
 const frequencyMenu = document.querySelector("#frequencyMenu");
 const frequencyValue = document.querySelector("#frequencyValue");
@@ -291,6 +298,9 @@ const setLanguage = (language) => {
 
   i18nNodes.forEach((node) => {
     node.textContent = strings[node.dataset.i18n];
+  });
+  i18nAriaNodes.forEach((node) => {
+    node.setAttribute("aria-label", strings[node.dataset.i18nAria]);
   });
   optionNodes.forEach((node) => {
     node.textContent = strings[node.dataset.i18nOption];
