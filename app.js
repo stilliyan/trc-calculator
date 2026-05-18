@@ -13,6 +13,7 @@ const defaults = {
 let activeMode = defaults.mode;
 let activeLanguage = defaults.language;
 let selectedFrequency = defaults.frequency;
+let copyFeedbackTimer;
 
 const copy = {
   bg: {
@@ -42,6 +43,7 @@ const copy = {
     copy: "Копирай резултата",
     clear: "Изчисти",
     copied: "Копирано",
+    copyFailed: "Неуспешно копиране",
     incomplete: "Попълни стойности",
     units: "единици",
     everyDay: "Всеки ден",
@@ -49,9 +51,21 @@ const copy = {
     twiceWeekly: "2 пъти седмично",
     threeWeekly: "3 пъти седмично",
     custom: "Персонално",
-    disclaimer: "Това е калкулатор за конвертиране на стойности, не медицински съвет.",
+    disclaimer: "Само за изчисления и ориентация - не е медицински съвет. Провери всяка доза с лекар.",
     supportButton: "Buy me a Monster",
     supportAria: "Buy me a Monster",
+    privacyLink: "Поверителност",
+    termsLink: "Условия",
+    close: "Затвори",
+    closeAria: "Затвори",
+    privacyTitle: "Поверителност",
+    privacyBody1: "Този калкулатор не изисква регистрация и не съхранява въведените стойности.",
+    privacyBody2: "Изчисленията се правят локално в браузъра. Не използваме tracking cookies или analytics.",
+    privacyBody3: "Ако отвориш външен линк, като support бутон, той може да се обработва от съответната външна услуга.",
+    termsTitle: "Условия",
+    termsBody1: "Инструментът е само за конвертиране на стойности и не дава медицински съвет или препоръки за дозиране.",
+    termsBody2: "Възможни са грешки в въвеждането, закръгляването или интерпретацията. Провери резултатите преди употреба.",
+    termsBody3: "Дозировки и медицински решения се обсъждат с лицензиран медицински специалист.",
     syringeEmpty: "U-100 спринцовка: непълно изчисление",
   },
   en: {
@@ -81,6 +95,7 @@ const copy = {
     copy: "Copy result",
     clear: "Clear",
     copied: "Copied",
+    copyFailed: "Copy failed",
     incomplete: "Enter values",
     units: "units",
     everyDay: "Every day",
@@ -88,9 +103,21 @@ const copy = {
     twiceWeekly: "2x weekly",
     threeWeekly: "3x weekly",
     custom: "Custom",
-    disclaimer: "This is a value conversion calculator, not medical advice.",
+    disclaimer: "Educational only - not medical advice. Verify any dose with a licensed prescriber.",
     supportButton: "Buy me a Monster",
     supportAria: "Buy me a Monster",
+    privacyLink: "Privacy",
+    termsLink: "Terms",
+    close: "Close",
+    closeAria: "Close",
+    privacyTitle: "Privacy",
+    privacyBody1: "This calculator does not require an account and does not store the values you enter.",
+    privacyBody2: "Calculations happen locally in your browser. We do not use tracking cookies or analytics.",
+    privacyBody3: "If you open an external link, such as a support button, it may be handled by that third-party service.",
+    termsTitle: "Terms",
+    termsBody1: "This tool only converts values and does not provide medical advice or dosage recommendations.",
+    termsBody2: "Input, rounding, or interpretation errors can happen. Verify results before using them.",
+    termsBody3: "Dosages and medical decisions should be discussed with a licensed medical professional.",
     syringeEmpty: "U-100 syringe: incomplete calculation",
   },
 };
@@ -123,6 +150,7 @@ const output = {
   vialDoses: document.querySelector("#vialDoses"),
   vialMeta: document.querySelector("#vialMeta"),
   copyStatus: document.querySelector("#copyStatus"),
+  copyAction: document.querySelector(".copy-action"),
 };
 
 const buttons = {
@@ -143,6 +171,12 @@ const frequencyValue = document.querySelector("#frequencyValue");
 const titleNode = document.querySelector("#page-title");
 const subtitleNode = document.querySelector("#subtitle");
 const disclaimerNode = document.querySelector("#disclaimer");
+const legalDialogs = {
+  privacy: document.querySelector("#privacyDialog"),
+  terms: document.querySelector("#termsDialog"),
+};
+const legalOpenButtons = document.querySelectorAll("[data-legal-open]");
+const legalCloseButtons = document.querySelectorAll("[data-legal-close]");
 
 const readNumber = (field) => {
   if (!field.value.trim()) return null;
@@ -164,6 +198,55 @@ const formatCompact = (value, digits = 1) => {
   return new Intl.NumberFormat("en-US", {
     maximumFractionDigits: digits,
   }).format(value);
+};
+
+const clearCopyFeedback = () => {
+  window.clearTimeout(copyFeedbackTimer);
+  buttons.copy.classList.remove("is-copied");
+  output.copyAction.classList.remove("is-visible");
+  output.copyStatus.textContent = "";
+};
+
+const showCopyFeedback = (message, isSuccess = false) => {
+  window.clearTimeout(copyFeedbackTimer);
+  output.copyStatus.textContent = message;
+  output.copyAction.classList.add("is-visible");
+  buttons.copy.classList.toggle("is-copied", isSuccess);
+  copyFeedbackTimer = window.setTimeout(clearCopyFeedback, isSuccess ? 1700 : 2600);
+};
+
+const copyTextToClipboard = async (text) => {
+  if (navigator.clipboard?.writeText && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      // Some embedded browsers deny clipboard permissions even on localhost.
+    }
+  }
+
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.setAttribute("readonly", "");
+  textArea.style.position = "fixed";
+  textArea.style.top = "0";
+  textArea.style.left = "-9999px";
+  textArea.style.opacity = "0";
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  textArea.setSelectionRange(0, textArea.value.length);
+
+  let copied = false;
+  try {
+    copied = document.execCommand("copy");
+  } catch {
+    copied = false;
+  } finally {
+    textArea.remove();
+  }
+
+  return copied;
 };
 
 const updateSyringe = ({ ml, units, valid }) => {
@@ -253,7 +336,7 @@ const setFrequency = (value) => {
     }
   });
   closeFrequencyMenu();
-  output.copyStatus.textContent = "";
+  clearCopyFeedback();
   calculate();
 };
 
@@ -280,7 +363,7 @@ const setMode = (mode) => {
     panel.setAttribute("aria-hidden", String(!isActive));
   });
   output.vialUsageCard.hidden = true;
-  output.copyStatus.textContent = "";
+  clearCopyFeedback();
   calculate();
 };
 
@@ -317,7 +400,7 @@ const setLanguage = (language) => {
     button.setAttribute("aria-pressed", String(isActive));
   });
 
-  output.copyStatus.textContent = "";
+  clearCopyFeedback();
   calculate();
 };
 
@@ -326,14 +409,14 @@ const sanitizeInput = (event) => {
   if (field.value && Number(field.value) < 0) {
     field.value = "0";
   }
-  output.copyStatus.textContent = "";
+  clearCopyFeedback();
   calculate();
 };
 
 const copyResult = async () => {
   const result = calculate();
   if (!result.valid) {
-    output.copyStatus.textContent = copy[activeLanguage].incomplete;
+    showCopyFeedback(copy[activeLanguage].incomplete);
     return;
   }
 
@@ -345,11 +428,11 @@ const copyResult = async () => {
       ? `TRT изчисление: ${formatCompact(result.weeklyDose, 2)} mg/седмица, ${formatCompact(result.injectionsPerWeek, 2)} инжекции седмично при ${formatCompact(result.concentration, 2)} mg/mL = ${formatNumber(result.ml)} mL / ${formatCompact(result.units)} U-100 единици на инжекция.`
       : `TRT изчисление: ${formatCompact(result.dose, 2)} mg при ${formatCompact(result.concentration, 2)} mg/mL = ${formatNumber(result.ml)} mL / ${formatCompact(result.units)} U-100 единици.`);
 
-  try {
-    await navigator.clipboard.writeText(text);
-    output.copyStatus.textContent = copy[activeLanguage].copied;
-  } catch {
-    output.copyStatus.textContent = text;
+  const copied = await copyTextToClipboard(text);
+  if (copied) {
+    showCopyFeedback(copy[activeLanguage].copied, true);
+  } else {
+    showCopyFeedback(copy[activeLanguage].copyFailed);
   }
 };
 
@@ -359,7 +442,7 @@ const resetCalculator = () => {
   fields.weeklyDose.value = defaults.weeklyDose;
   fields.weeklyConcentration.value = defaults.weeklyConcentration;
   fields.customInjections.value = defaults.customInjections;
-  output.copyStatus.textContent = "";
+  clearCopyFeedback();
   setFrequency(defaults.frequency);
   setMode(defaults.mode);
 };
@@ -387,6 +470,29 @@ buttons.frequencyTrigger.addEventListener("click", () => {
 
 buttons.frequencyOptions.forEach((option) => {
   option.addEventListener("click", () => setFrequency(option.dataset.frequencyValue));
+});
+
+legalOpenButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const dialog = legalDialogs[button.dataset.legalOpen];
+    if (dialog && typeof dialog.showModal === "function") {
+      dialog.showModal();
+    }
+  });
+});
+
+legalCloseButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    button.closest("dialog")?.close();
+  });
+});
+
+Object.values(legalDialogs).forEach((dialog) => {
+  dialog?.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
 });
 
 document.addEventListener("click", (event) => {

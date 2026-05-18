@@ -262,16 +262,35 @@
           </section>
 
           <div class="result-actions">
-            <button class="button button-primary" id="copyResult" type="button" data-i18n="copy">Копирай резултата</button>
+            <div class="copy-action">
+              <button class="button button-primary copy-button" id="copyResult" type="button">
+                <span class="copy-icon-wrap" aria-hidden="true">
+                  <svg class="copy-icon" viewBox="0 0 16 16">
+                    <path d="M5 5.5H3.8C3.36 5.5 3 5.86 3 6.3V12.2C3 12.64 3.36 13 3.8 13H9.7C10.14 13 10.5 12.64 10.5 12.2V11" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M6.3 3H12.2C12.64 3 13 3.36 13 3.8V9.7C13 10.14 12.64 10.5 12.2 10.5H6.3C5.86 10.5 5.5 10.14 5.5 9.7V3.8C5.5 3.36 5.86 3 6.3 3Z" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round" />
+                  </svg>
+                  <svg class="copy-check" viewBox="0 0 16 16">
+                    <path d="M13.5 4.5 6.5 11.5 2.8 7.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <span class="copy-button-label" data-i18n="copy">Копирай резултата</span>
+              </button>
+              <output class="copy-status" id="copyStatus" aria-live="polite"></output>
+            </div>
             <button class="button button-secondary" id="resetCalculator" type="button" data-i18n="clear">Изчисти</button>
-            <output class="copy-status" id="copyStatus" aria-live="polite"></output>
           </div>
         </article>
       </section>
 
       <p class="disclaimer">
-        <span id="disclaimer">Това е калкулатор за конвертиране на стойности, не медицински съвет.</span>
+        <span id="disclaimer">Само за изчисления и ориентация - не е медицински съвет. Провери всяка доза с лекар.</span>
       </p>
+
+      <nav class="legal-links" aria-label="Legal" hidden>
+        <button class="legal-link" type="button" data-legal-open="privacy" data-i18n="privacyLink">Privacy</button>
+        <span aria-hidden="true">/</span>
+        <button class="legal-link" type="button" data-legal-open="terms" data-i18n="termsLink">Terms</button>
+      </nav>
 
       <div class="support-strip" aria-label="Support">
         <a class="support-button" href="#" aria-disabled="true" data-i18n-aria="supportAria">
@@ -280,6 +299,38 @@
         </a>
       </div>
     </main>
+
+    <dialog class="legal-dialog" id="privacyDialog" aria-labelledby="privacyTitle">
+      <div class="legal-dialog-card">
+        <header class="legal-dialog-header">
+          <h2 id="privacyTitle" data-i18n="privacyTitle">Privacy</h2>
+        </header>
+        <div class="legal-dialog-body">
+          <p data-i18n="privacyBody1">Този калкулатор не изисква регистрация и не съхранява въведените стойности.</p>
+          <p data-i18n="privacyBody2">Изчисленията се правят локално в браузъра. Не използваме tracking cookies или analytics.</p>
+          <p data-i18n="privacyBody3">Ако отвориш външен линк, като support бутон, той може да се обработва от съответната външна услуга.</p>
+        </div>
+        <footer class="legal-dialog-footer">
+          <button class="legal-close" type="button" data-legal-close aria-label="Close" data-i18n="close" data-i18n-aria="closeAria">Close</button>
+        </footer>
+      </div>
+    </dialog>
+
+    <dialog class="legal-dialog" id="termsDialog" aria-labelledby="termsTitle">
+      <div class="legal-dialog-card">
+        <header class="legal-dialog-header">
+          <h2 id="termsTitle" data-i18n="termsTitle">Terms</h2>
+        </header>
+        <div class="legal-dialog-body">
+          <p data-i18n="termsBody1">Инструментът е само за конвертиране на стойности и не дава медицински съвет или препоръки за дозиране.</p>
+          <p data-i18n="termsBody2">Възможни са грешки в въвеждането, закръгляването или интерпретацията. Провери резултатите преди употреба.</p>
+          <p data-i18n="termsBody3">Дозировки и медицински решения се обсъждат с лицензиран медицински специалист.</p>
+        </div>
+        <footer class="legal-dialog-footer">
+          <button class="legal-close" type="button" data-legal-close aria-label="Close" data-i18n="close" data-i18n-aria="closeAria">Close</button>
+        </footer>
+      </div>
+    </dialog>
 
     <script src="./app.js"></script>
   </body>
