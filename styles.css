@@ -282,7 +282,7 @@ h1 {
 }
 
 .copy-check {
-  color: #27a644;
+  color: rgba(10, 10, 10, 0.82);
   opacity: 0;
   transform: scale(0.72);
 }
