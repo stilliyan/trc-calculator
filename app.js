@@ -15,6 +15,8 @@ let activeLanguage = defaults.language;
 let selectedFrequency = defaults.frequency;
 let copyFeedbackTimer;
 
+const eodFrequencyValue = "3.5";
+
 const copy = {
   bg: {
     title: "TRT Калкулатор",
@@ -32,6 +34,8 @@ const copy = {
     mlPerInjection: "mL на инжекция",
     unitsPerInjection: "U-100 единици на инжекция",
     weeklyMl: "mL седмично",
+    eodFrequencyNote: "През ден се изчислява като средно 3.5 инжекции седмично.",
+    eodSyringeNote: "3.5× седмично (средно)",
     customInjections: "Инжекции седмично",
     vialUsageTitle: "Използване на флакон",
     vialDays: "дни запас",
@@ -84,6 +88,8 @@ const copy = {
     mlPerInjection: "mL per injection",
     unitsPerInjection: "U-100 units per injection",
     weeklyMl: "Weekly mL",
+    eodFrequencyNote: "EOD is calculated as an average of 3.5 injections weekly.",
+    eodSyringeNote: "3.5× weekly (average)",
     customInjections: "Injections per week",
     vialUsageTitle: "Vial usage",
     vialDays: "days of supply",
@@ -139,6 +145,9 @@ const output = {
   syringeStopper: document.querySelector("#syringeStopper"),
   syringeWarning: document.querySelector("#syringeWarning"),
   customInjectionsField: document.querySelector("#customInjectionsField"),
+  eodFrequencyNote: document.querySelector("#eodFrequencyNote"),
+  eodDoseHelper: document.querySelector("#eodDoseHelper"),
+  eodSyringeNote: document.querySelector("#eodSyringeNote"),
   mgPerInjection: document.querySelector("#mgPerInjection"),
   mlPerInjection: document.querySelector("#mlPerInjection"),
   unitsPerInjection: document.querySelector("#unitsPerInjection"),
@@ -249,7 +258,7 @@ const copyTextToClipboard = async (text) => {
   return copied;
 };
 
-const updateSyringe = ({ ml, units, valid }) => {
+const updateSyringe = ({ ml, units, valid, isEod = false }) => {
   const strings = copy[activeLanguage];
   const fillWidth = valid ? Math.min(units, 100) * 4.8 : 0;
   const fillX = 588 - fillWidth;
@@ -261,6 +270,7 @@ const updateSyringe = ({ ml, units, valid }) => {
   output.syringeFill.setAttribute("width", String(fillWidth));
   output.syringeStopper.setAttribute("x", String(stopperX));
   output.syringeSvg.setAttribute("aria-label", valid ? `${strings.syringe}: ${syringeLabel}` : strings.syringeEmpty);
+  output.eodSyringeNote.hidden = !(valid && isEod);
   output.syringeWarning.hidden = !(valid && units > 100);
 };
 
@@ -290,6 +300,9 @@ const calculateWeekly = () => {
   const ml = valid ? mgPerInjection / concentration : null;
   const units = valid ? ml * 100 : null;
   const weeklyMl = valid ? weeklyDose / concentration : null;
+  const isEod = selectedFrequency === eodFrequencyValue;
+  const eodWeekA = valid && isEod ? mgPerInjection * 4 : null;
+  const eodWeekB = valid && isEod ? mgPerInjection * 3 : null;
   const intervalDays = valid ? 7 / injectionsPerWeek : null;
   const dosesPerVial = valid && ml > 0 ? Math.floor(defaults.vialVolumeMl / ml) : null;
   const daysOfSupply = valid && dosesPerVial !== null ? dosesPerVial * intervalDays : null;
@@ -297,6 +310,11 @@ const calculateWeekly = () => {
   const vialValid = valid && dosesPerVial !== null && daysOfSupply !== null && leftoverMl !== null;
 
   output.customInjectionsField.hidden = selectedFrequency !== "custom";
+  output.eodFrequencyNote.hidden = !isEod;
+  output.eodDoseHelper.hidden = !(valid && isEod);
+  output.eodDoseHelper.textContent = activeLanguage === "en"
+    ? `4 injections → ${formatCompact(eodWeekA, 1)} mg • 3 injections → ${formatCompact(eodWeekB, 1)} mg`
+    : `4 инжекции → ${formatCompact(eodWeekA, 1)} mg • 3 инжекции → ${formatCompact(eodWeekB, 1)} mg`;
   output.mgPerInjection.textContent = `${formatNumber(mgPerInjection)} mg`;
   output.mlPerInjection.textContent = `${formatNumber(ml)} mL`;
   output.unitsPerInjection.textContent = `${formatCompact(units)} ${copy[activeLanguage].units}`;
@@ -310,7 +328,7 @@ const calculateWeekly = () => {
   output.vialLiquid.setAttribute("y", "38");
   output.vialIllustration.setAttribute("aria-label", vialValid ? `Vial: ${dosesPerVial} doses, ${formatNumber(leftoverMl)} mL leftover.` : "Vial usage unavailable.");
 
-  return { mode: "weekly", weeklyDose, concentration, injectionsPerWeek, mgPerInjection, ml, units, weeklyMl, valid, dosesPerVial, daysOfSupply, leftoverMl };
+  return { mode: "weekly", weeklyDose, concentration, injectionsPerWeek, mgPerInjection, ml, units, weeklyMl, isEod, valid, dosesPerVial, daysOfSupply, leftoverMl };
 };
 
 const closeFrequencyMenu = () => {

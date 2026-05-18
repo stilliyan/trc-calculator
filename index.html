@@ -104,6 +104,14 @@
                     <button class="custom-select-option" type="button" role="option" aria-selected="false" data-frequency-value="custom" data-i18n-option="custom">Персонално</button>
                   </div>
                 </div>
+                <span class="frequency-note" id="eodFrequencyNote" hidden>
+                  <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+                    <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.35" />
+                    <path d="M8 7.2V11" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+                    <circle cx="8" cy="4.9" r="0.75" fill="currentColor" />
+                  </svg>
+                  <span data-i18n="eodFrequencyNote">През ден се изчислява като средно 3.5 инжекции седмично.</span>
+                </span>
               </label>
 
               <label class="field custom-field" id="customInjectionsField" hidden>
@@ -119,6 +127,7 @@
               <div class="result-item">
                 <span data-i18n="mgPerInjection">mg на инжекция</span>
                 <strong id="mgPerInjection">14.29 mg</strong>
+                <small class="result-helper" id="eodDoseHelper" hidden>14.29 mg на инжекция • средно 3.5 инжекции седмично</small>
               </div>
               <div class="result-item">
                 <span data-i18n="mlPerInjection">mL на инжекция</span>
@@ -210,6 +219,7 @@
               <line x1="637" y1="77" x2="694" y2="77" class="needle" />
               <path d="M694 75.5L704 77L694 78.5Z" class="needle-tip" />
             </svg>
+            <p class="syringe-average-note" id="eodSyringeNote" data-i18n="eodSyringeNote" hidden>3.5× седмично (средно)</p>
             <p class="warning" id="syringeWarning" hidden data-i18n="warning">Обемът надвишава скалата на 1 mL спринцовка.</p>
           </div>
 
