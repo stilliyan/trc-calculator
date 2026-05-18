@@ -861,7 +861,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: var(--spacing-40) auto 0;
   color: var(--footer-muted);
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.55;
   text-align: center;
 }
