@@ -32,6 +32,31 @@ let lastScheduleEvents = [];
 
 const eodFrequencyValue = "3.5";
 
+const detectPreferredLanguage = () => {
+  const browserLanguages = [
+    ...(Array.isArray(navigator.languages) ? navigator.languages : []),
+    navigator.language,
+  ].filter(Boolean);
+
+  if (browserLanguages.some((language) => language.toLowerCase().startsWith("bg"))) {
+    return "bg";
+  }
+
+  if (browserLanguages.some((language) => language.toLowerCase().startsWith("en"))) {
+    return "en";
+  }
+
+  try {
+    if (Intl.DateTimeFormat().resolvedOptions().timeZone === "Europe/Sofia") {
+      return "bg";
+    }
+  } catch {
+    // Keep the bundled Bulgarian default if browser locale detection is unavailable.
+  }
+
+  return defaults.language;
+};
+
 const copy = {
   bg: {
     title: "TRT Калкулатор",
@@ -939,12 +964,18 @@ const languageMenu = document.querySelector("#languageMenu");
 const languageValue = document.querySelector("#languageValue");
 
 const closeLanguageMenu = () => {
+  if (!languageMenu) {
+    return;
+  }
   languageMenu.hidden = true;
   buttons.languageTrigger?.classList.remove("is-open");
   buttons.languageTrigger?.setAttribute("aria-expanded", "false");
 };
 
 const openLanguageMenu = () => {
+  if (!languageMenu) {
+    return;
+  }
   languageMenu.hidden = false;
   buttons.languageTrigger?.classList.add("is-open");
   buttons.languageTrigger?.setAttribute("aria-expanded", "true");
@@ -1134,7 +1165,9 @@ const setLanguage = (language) => {
     button.setAttribute("aria-pressed", String(isActive));
     button.setAttribute("aria-selected", String(isActive));
   });
-  languageValue.textContent = language.toUpperCase();
+  if (languageValue) {
+    languageValue.textContent = language.toUpperCase();
+  }
 
   clearCopyFeedback();
   closeLanguageMenu();
@@ -1260,18 +1293,6 @@ buttons.compoundModes.forEach((button) => {
   button.addEventListener("click", () => setCompoundMode(button.dataset.compoundMode));
 });
 
-buttons.languages.forEach((button) => {
-  button.addEventListener("click", () => setLanguage(button.dataset.language));
-});
-
-buttons.languageTrigger?.addEventListener("click", () => {
-  if (languageMenu.hidden) {
-    openLanguageMenu();
-  } else {
-    closeLanguageMenu();
-  }
-});
-
 buttons.theme?.addEventListener("click", () => {
   setTheme(activeTheme === "light" ? "dark" : "light");
 });
@@ -1326,20 +1347,12 @@ document.addEventListener("click", (event) => {
   if (!event.target.closest("#frequencySelect")) {
     closeFrequencyMenu();
   }
-  if (!event.target.closest("#languageSelect")) {
-    closeLanguageMenu();
-  }
 });
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     closeFrequencyMenu();
-    closeLanguageMenu();
-    if (document.activeElement === buttons.languageTrigger || document.activeElement?.closest("#languageSelect")) {
-      buttons.languageTrigger?.focus();
-    } else {
-      buttons.frequencyTrigger.focus();
-    }
+    buttons.frequencyTrigger.focus();
   }
 });
 
@@ -1352,6 +1365,6 @@ try {
   activeTheme = defaults.theme;
 }
 
-setLanguage(defaults.language);
+setLanguage(detectPreferredLanguage());
 setTheme(activeTheme);
 resetCalculator();
