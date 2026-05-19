@@ -937,9 +937,12 @@ const updateVialUsage = (result) => {
     ? `${formatCompact(totalConcentration, 2)} mg/mL · ${formatCompact(defaults.vialVolumeMl, 2)} mL`
     : `${formatCompact(defaults.vialVolumeMl, 2)} mL ${strings.vialWord}`;
 
-  output.vialDays.textContent = activeLanguage === "en"
-    ? `~${Math.round(daysOfSupply)} days of supply in ${dosesPerVial} doses, with ${leftoverText} mL leftover`
-    : `~${Math.round(daysOfSupply)} дни запас в ${dosesPerVial} инжекции, с ${leftoverText} mL остатък`;
+  const supplyDaysText = escapeHtml(`~${Math.round(daysOfSupply)}`);
+  const dosesText = escapeHtml(formatCompact(dosesPerVial, 0));
+  const leftoverDisplayText = escapeHtml(`${leftoverText} mL`);
+  output.vialDays.innerHTML = activeLanguage === "en"
+    ? `<span class="vial-title-value">${supplyDaysText}</span> days of supply in <span class="vial-title-value">${dosesText}</span> doses, with <span class="vial-title-value">${leftoverDisplayText}</span> leftover`
+    : `<span class="vial-title-value">${supplyDaysText}</span> дни запас в <span class="vial-title-value">${dosesText}</span> инжекции, с <span class="vial-title-value">${leftoverDisplayText}</span> остатък`;
   output.vialDoses.textContent = `${formatNumber(ml)} mL ${activeLanguage === "en" ? "per injection" : "на инжекция"} · ${formatCompact(weeklyMl, 2)} mL/${activeLanguage === "en" ? "week" : "седмица"}`;
   output.vialMeta.textContent = vialMeta;
   output.vialLiquid.setAttribute("height", String(liquidHeight));

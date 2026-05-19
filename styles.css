@@ -1046,12 +1046,20 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .vial-usage-content strong {
-  color: var(--color-porcelain);
+  color: var(--text-secondary);
   font-family: var(--font-inter-variable);
-  font-size: 21px;
-  font-weight: 510;
-  line-height: 1.32;
+  font-size: 18px;
+  font-weight: 450;
+  line-height: 1.35;
   letter-spacing: 0;
+}
+
+.vial-usage-content .vial-title-value {
+  display: inline;
+  color: var(--color-porcelain);
+  font-size: inherit;
+  font-weight: 510;
+  line-height: inherit;
 }
 
 .vial-usage-content span {
@@ -1144,9 +1152,10 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .schedule-header h2 {
-  font-size: 19px;
-  font-weight: 510;
-  line-height: 1.28;
+  color: var(--color-porcelain);
+  font-size: 18px;
+  font-weight: 450;
+  line-height: 1.35;
 }
 
 .schedule-calendar-button {
@@ -2418,8 +2427,8 @@ body.theme-light .legal-dialog-body {
   }
 
   .vial-usage-content strong {
-    font-size: 19px;
-    line-height: 1.28;
+    font-size: 18px;
+    line-height: 1.35;
   }
 
   .vial-usage-content span {
