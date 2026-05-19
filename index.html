@@ -7,25 +7,57 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="app-shell">
+    <main class="app-shell" id="top">
       <section class="hero-panel" aria-labelledby="page-title">
+        <div class="hero-topbar">
+          <a class="brand-mark" href="#top" aria-label="TRT Калкулатор">
+            <img src="./assets/logo.svg" alt="" aria-hidden="true" />
+          </a>
+          <div class="top-controls">
+            <div class="mode-toggle" role="tablist" aria-label="Режим на калкулатора">
+              <button class="mode-button is-active" id="singleModeButton" type="button" role="tab" aria-selected="true" aria-controls="weeklyMode" data-mode="single"><span class="label-full">TRT</span><span class="label-short">TRT</span></button>
+              <button class="mode-button" id="blendModeButton" type="button" role="tab" aria-selected="false" aria-controls="weeklyMode" data-mode="blend"><span class="label-full">Бленд</span><span class="label-short">Бленд</span></button>
+            </div>
+            <div class="language-switch" id="languageSelect">
+              <button class="language-trigger" id="languageTrigger" type="button" aria-label="Language" aria-haspopup="listbox" aria-expanded="false">
+                <span id="languageValue">BG</span>
+                <svg aria-hidden="true" viewBox="0 0 12 12" focusable="false">
+                  <path d="M3 4.5 6 7.5 9 4.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div class="language-menu" id="languageMenu" role="listbox" aria-label="Language" hidden>
+                <button class="language-button is-active" type="button" role="option" data-language="bg" aria-selected="true" aria-pressed="true">BG</button>
+                <button class="language-button" type="button" role="option" data-language="en" aria-selected="false" aria-pressed="false">EN</button>
+              </div>
+            </div>
+            <button class="theme-button" id="themeToggle" type="button" aria-label="Светла тема" aria-pressed="false">
+              <svg class="theme-icon theme-icon-sun" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+              <svg class="theme-icon theme-icon-moon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+                <path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
         <div class="hero-copy">
           <h1 id="page-title">TRT Калкулатор</h1>
-          <p id="subtitle">Калкулатор за mL и U-100</p>
-        </div>
-        <div class="language-switch" aria-label="Language">
-          <button class="language-button is-active" type="button" data-language="bg" aria-pressed="true">BG</button>
-          <button class="language-button" type="button" data-language="en" aria-pressed="false">EN</button>
+          <p id="subtitle">Изчислява mL, U-100 единици и реална седмична доза според концентрация, количество на инжекция и честота.</p>
+          <!-- TODO: Wire this helper link to a worked example section when examples are added. -->
+          <a class="hero-helper-link" href="#worked-example" data-i18n="heroExample">Нов тук? Виж примерна сметка</a>
         </div>
       </section>
 
       <section class="calculator-stack" aria-label="TRT калкулатор за доза">
         <article class="card calculator-card">
-          <div class="mode-toggle" role="tablist" aria-label="Режим на калкулатора">
-            <button class="mode-button is-active" id="weeklyModeButton" type="button" role="tab" aria-selected="true" aria-controls="weeklyMode" data-mode="weekly">Седмична доза</button>
-            <button class="mode-button" id="singleModeButton" type="button" role="tab" aria-selected="false" aria-controls="singleMode" data-mode="single">Единична доза</button>
-          </div>
-
           <div class="mode-panel" id="singleMode" role="tabpanel" aria-labelledby="singleModeButton" data-panel="single" hidden>
             <div class="card-header">
               <div>
@@ -63,29 +95,95 @@
             </div>
           </div>
 
-          <div class="mode-panel is-active" id="weeklyMode" role="tabpanel" aria-labelledby="weeklyModeButton" data-panel="weekly">
+          <div class="mode-panel is-active" id="weeklyMode" role="tabpanel" aria-labelledby="singleModeButton" data-panel="weekly">
             <div class="card-header">
               <div>
-                <h2 data-i18n="weeklyTitle">Седмична доза</h2>
+                <h2 data-i18n="weeklyTitle">Въведете седмична цел и концентрация</h2>
               </div>
             </div>
 
+            <div class="input-method-toggle" role="group" aria-label="Метод на въвеждане">
+              <button class="input-method-button is-active" type="button" aria-pressed="true" data-input-method="weekly" data-i18n="inputMethodWeekly">Седмична доза</button>
+              <button class="input-method-button" type="button" aria-pressed="false" data-input-method="ml" data-i18n="inputMethodMl">mL на инжекция</button>
+            </div>
+
             <div class="field-grid">
-              <label class="field">
-                <span data-i18n="weeklyDose">Седмична доза</span>
+              <label class="field" id="targetWeeklyDoseField" hidden>
+                <span data-i18n="targetWeeklyDose">Желана седмична доза</span>
                 <span class="input-wrap">
-                  <input id="weeklyDose" inputmode="decimal" min="0" step="0.01" type="number" value="100" />
+                  <input id="targetWeeklyDose" inputmode="decimal" min="0" step="0.01" type="number" value="200" autocomplete="off" />
                   <span>mg/week</span>
                 </span>
               </label>
 
-              <label class="field">
+              <label class="field" id="weeklyDoseField">
+                <span data-i18n="injectionAmount">Количество на инжекция</span>
+                <span class="input-wrap">
+                  <input id="weeklyDose" inputmode="decimal" min="0" step="0.01" type="number" value="0.20" autocomplete="off" />
+                  <span>mL</span>
+                </span>
+              </label>
+
+              <label class="field" id="weeklyConcentrationField">
                 <span data-i18n="concentration">Концентрация</span>
                 <span class="input-wrap">
-                  <input id="weeklyConcentration" inputmode="decimal" min="0" step="0.01" type="number" value="200" />
+                  <input id="weeklyConcentration" inputmode="decimal" min="0" step="0.01" type="number" value="250" autocomplete="off" />
                   <span>mg/mL</span>
                 </span>
               </label>
+
+              <div class="blend-fields" id="blendFields" hidden>
+                <label class="field" id="blendTargetWeeklyDoseField" hidden>
+                  <span data-i18n="targetWeeklyDose">Желана седмична доза</span>
+                  <span class="input-wrap">
+                    <input id="blendTargetWeeklyDose" inputmode="decimal" min="0" step="0.01" type="number" value="200" autocomplete="off" />
+                    <span>mg/week</span>
+                  </span>
+                </label>
+
+                <label class="field" id="blendInjectionMlField">
+                  <span data-i18n="injectionAmount">Количество на инжекция</span>
+                  <span class="input-wrap">
+                    <input id="blendInjectionMl" inputmode="decimal" min="0" step="0.01" type="number" value="0.20" autocomplete="off" />
+                    <span>mL</span>
+                  </span>
+                </label>
+
+                <div class="compound-rows" aria-label="Blend compounds">
+                  <label class="compound-row">
+                    <span data-i18n="compound1">Съставка 1</span>
+                    <span class="compound-inputs">
+                      <input id="compoundName1" type="text" value="Test P" />
+                      <span class="input-wrap">
+                        <input id="compoundConcentration1" inputmode="decimal" min="0" step="0.01" type="number" value="50" />
+                        <span>mg/mL</span>
+                      </span>
+                    </span>
+                  </label>
+
+                  <label class="compound-row">
+                    <span data-i18n="compound2">Съставка 2</span>
+                    <span class="compound-inputs">
+                      <input id="compoundName2" type="text" value="Mast P" />
+                      <span class="input-wrap">
+                        <input id="compoundConcentration2" inputmode="decimal" min="0" step="0.01" type="number" value="50" />
+                        <span>mg/mL</span>
+                      </span>
+                    </span>
+                  </label>
+
+                  <label class="compound-row">
+                    <span data-i18n="compound3">Съставка 3</span>
+                    <span class="compound-inputs">
+                      <input id="compoundName3" type="text" value="Tren A" />
+                      <span class="input-wrap">
+                        <input id="compoundConcentration3" inputmode="decimal" min="0" step="0.01" type="number" value="50" />
+                        <span>mg/mL</span>
+                      </span>
+                    </span>
+                  </label>
+                </div>
+              </div>
 
               <label class="field">
                 <span data-i18n="frequency">Честота на инжектиране</span>
@@ -104,14 +202,6 @@
                     <button class="custom-select-option" type="button" role="option" aria-selected="false" data-frequency-value="custom" data-i18n-option="custom">Персонално</button>
                   </div>
                 </div>
-                <span class="frequency-note" id="eodFrequencyNote" hidden>
-                  <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">
-                    <circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.35" />
-                    <path d="M8 7.2V11" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
-                    <circle cx="8" cy="4.9" r="0.75" fill="currentColor" />
-                  </svg>
-                  <span data-i18n="eodFrequencyNote">През ден се изчислява като средно 3.5 инжекции седмично.</span>
-                </span>
               </label>
 
               <label class="field custom-field" id="customInjectionsField" hidden>
@@ -123,173 +213,201 @@
               </label>
             </div>
 
-            <div class="result-strip">
-              <div class="result-item">
-                <span data-i18n="mgPerInjection">mg на инжекция</span>
-                <strong id="mgPerInjection">14.29 mg</strong>
-                <small class="result-helper" id="eodDoseHelper" hidden>14.29 mg на инжекция • средно 3.5 инжекции седмично</small>
+            <div class="syringe-module" aria-label="U-100 спринцовка">
+              <div class="syringe-summary">
+                <p id="syringeSummary">Инжектирайте ~0.10 mL всеки ден (10 единици на U-100 спринцовка).</p>
+                <span id="syringeFrequencySummary">7 инжекции седмично</span>
               </div>
-              <div class="result-item">
-                <span data-i18n="mlPerInjection">mL на инжекция</span>
-                <strong id="mlPerInjection">0.07 mL</strong>
+              <div class="syringe-readout">
+                <span data-i18n="syringe">U-100 спринцовка</span>
+                <strong id="syringeUnits">0.10 mL / 10 единици</strong>
               </div>
-              <div class="result-item">
-                <span data-i18n="unitsPerInjection">U-100 единици на инжекция</span>
-                <strong id="unitsPerInjection">7.1 единици</strong>
-              </div>
-              <div class="result-item">
-                <span data-i18n="weeklyMl">mL седмично</span>
-                <strong id="weeklyMl">0.50 mL</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="syringe-module" aria-label="U-100 спринцовка">
-            <div class="syringe-readout">
-              <span data-i18n="syringe">U-100 спринцовка</span>
-              <strong id="syringeUnits">0.10 mL / 10 единици</strong>
-            </div>
-            <svg id="syringeSvg" class="syringe" viewBox="0 0 720 172" role="img" aria-labelledby="syringeTitle syringeDescription" aria-label="U-100 спринцовка: 0.10 mL, 10 единици">
-              <title id="syringeTitle">U-100 скала на спринцовка</title>
-              <desc id="syringeDescription">Едномилилитрова U-100 скала с mL отгоре, единици отдолу и живо запълване според изчислените единици.</desc>
-              <defs>
-                <linearGradient id="barrelSheen" x1="0" x2="0" y1="40" y2="104" gradientUnits="userSpaceOnUse">
-                  <stop offset="0%" stop-color="var(--color-porcelain)" stop-opacity="0.13" />
-                  <stop offset="48%" stop-color="var(--color-porcelain)" stop-opacity="0.02" />
-                  <stop offset="100%" stop-color="var(--color-pitch-black)" stop-opacity="0.42" />
-                </linearGradient>
-                <linearGradient id="doseFill" x1="0" x2="1" y1="0" y2="0">
-                  <stop offset="0%" stop-color="var(--color-syringe-accent)" stop-opacity="0.22" />
-                  <stop offset="100%" stop-color="var(--color-syringe-accent)" stop-opacity="0.42" />
-                </linearGradient>
-                <clipPath id="barrelClip">
-                  <rect x="108" y="58" width="480" height="38" rx="5" />
-                </clipPath>
-              </defs>
-
-              <rect x="28" y="61" width="14" height="32" rx="4" class="syringe-endcap" />
-              <line x1="42" y1="77" x2="106" y2="77" class="syringe-plunger-line" />
-              <path class="syringe-body" d="M108 50H588C594 50 599 55 599 61V63L628 66C634 67 638 72 638 77C638 82 634 87 628 88L599 91V93C599 99 594 104 588 104H108C102 104 97 99 97 93V61C97 55 102 50 108 50Z" />
-              <rect x="108" y="58" width="480" height="38" rx="5" class="syringe-channel" />
-              <rect id="syringeFill" x="108" y="58" width="48" height="38" clip-path="url(#barrelClip)" class="barrel-fill" />
-              <rect x="108" y="58" width="480" height="38" rx="5" class="syringe-glass" />
-              <rect id="syringeStopper" x="152" y="54" width="8" height="46" rx="3" class="syringe-stopper" />
-
-              <g class="ticks" aria-hidden="true">
-                <line x1="108" y1="43" x2="108" y2="112" class="major" />
-                <line x1="132" y1="55" x2="132" y2="99" />
-                <line x1="156" y1="48" x2="156" y2="106" />
-                <line x1="180" y1="55" x2="180" y2="99" />
-                <line x1="204" y1="43" x2="204" y2="112" class="major" />
-                <line x1="228" y1="55" x2="228" y2="99" />
-                <line x1="252" y1="48" x2="252" y2="106" />
-                <line x1="276" y1="55" x2="276" y2="99" />
-                <line x1="300" y1="43" x2="300" y2="112" class="major" />
-                <line x1="324" y1="55" x2="324" y2="99" />
-                <line x1="348" y1="48" x2="348" y2="106" />
-                <line x1="372" y1="55" x2="372" y2="99" />
-                <line x1="396" y1="43" x2="396" y2="112" class="major" />
-                <line x1="420" y1="55" x2="420" y2="99" />
-                <line x1="444" y1="48" x2="444" y2="106" />
-                <line x1="468" y1="55" x2="468" y2="99" />
-                <line x1="492" y1="43" x2="492" y2="112" class="major" />
-                <line x1="516" y1="55" x2="516" y2="99" />
-                <line x1="540" y1="48" x2="540" y2="106" />
-                <line x1="564" y1="55" x2="564" y2="99" />
-                <line x1="588" y1="43" x2="588" y2="112" class="major" />
-              </g>
-
-              <g class="syringe-labels" aria-hidden="true">
-                <text x="88" y="24" class="scale-name">mL</text>
-                <text x="108" y="24">1.0</text>
-                <text x="204" y="24">0.8</text>
-                <text x="300" y="24">0.6</text>
-                <text x="396" y="24">0.4</text>
-                <text x="492" y="24">0.2</text>
-                <text x="588" y="24">0.0</text>
-                <text x="88" y="140" class="scale-name">единици</text>
-                <text x="108" y="140">100</text>
-                <text x="204" y="140">80</text>
-                <text x="300" y="140">60</text>
-                <text x="396" y="140">40</text>
-                <text x="492" y="140">20</text>
-                <text x="588" y="140">0</text>
-                <text x="645" y="81" class="u100-label">U-100</text>
-              </g>
-              <line x1="637" y1="77" x2="694" y2="77" class="needle" />
-              <path d="M694 75.5L704 77L694 78.5Z" class="needle-tip" />
-            </svg>
-            <p class="syringe-average-note" id="eodSyringeNote" data-i18n="eodSyringeNote" hidden>3.5× седмично (средно)</p>
-            <p class="warning" id="syringeWarning" hidden data-i18n="warning">Обемът надвишава скалата на 1 mL спринцовка.</p>
-          </div>
-
-          <section class="vial-usage-card" id="vialUsageCard" aria-labelledby="vialUsageTitle" hidden>
-            <div class="vial-usage-header">
-              <p class="vial-usage-kicker" id="vialUsageTitle" data-i18n="vialUsageTitle">Използване на флакон</p>
-            </div>
-            <div class="vial-usage-content">
-              <strong id="vialDays">~140 дни запас / 140 инжекции</strong>
-              <span id="vialDoses">10 mL флакон · 200 mg/mL</span>
-            </div>
-            <div class="vial-usage-visual">
-              <svg id="vialIllustration" class="vial-illustration" role="img" viewBox="0 0 80 122" aria-label="Флакон: 140 инжекции, 0 mL остатък.">
+              <svg id="syringeSvg" class="syringe" viewBox="0 0 720 172" role="img" aria-labelledby="syringeTitle syringeDescription" aria-label="U-100 спринцовка: 0.10 mL, 10 единици">
+                <title id="syringeTitle">U-100 скала на спринцовка</title>
+                <desc id="syringeDescription">Едномилилитрова U-100 скала с mL отгоре, единици отдолу и живо запълване според изчислените единици.</desc>
                 <defs>
-                  <clipPath id="vial-liquid-clip-static">
-                    <path d="M 19.5 38.5 L 19.5 111.5 Q 19.5 116.5 24 116.5 L 56 116.5 Q 60.5 116.5 60.5 111.5 L 60.5 38.5 Z"></path>
+                  <linearGradient id="barrelSheen" x1="0" x2="0" y1="40" y2="104" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="var(--color-porcelain)" stop-opacity="0.11" />
+                    <stop offset="52%" stop-color="var(--color-porcelain)" stop-opacity="0.015" />
+                    <stop offset="100%" stop-color="var(--color-pitch-black)" stop-opacity="0.18" />
+                  </linearGradient>
+                  <linearGradient id="doseFill" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="var(--color-syringe-accent)" stop-opacity="0.52" />
+                    <stop offset="100%" stop-color="var(--color-syringe-accent)" stop-opacity="0.78" />
+                  </linearGradient>
+                  <clipPath id="barrelClip">
+                    <rect x="108" y="58" width="480" height="38" rx="5" />
                   </clipPath>
-                  <linearGradient id="vial-left-highlight-static" x1="0" x2="1" y1="0" y2="0">
-                    <stop offset="0" stop-color="white" stop-opacity="0.22"></stop>
-                    <stop offset="0.55" stop-color="white" stop-opacity="0.04"></stop>
-                    <stop offset="1" stop-color="white" stop-opacity="0"></stop>
-                  </linearGradient>
-                  <linearGradient id="vial-right-highlight-static" x1="0" x2="1" y1="0" y2="0">
-                    <stop offset="0" stop-color="white" stop-opacity="0"></stop>
-                    <stop offset="0.55" stop-color="white" stop-opacity="0.04"></stop>
-                    <stop offset="1" stop-color="white" stop-opacity="0.18"></stop>
-                  </linearGradient>
-                  <linearGradient id="vial-liquid-gradient-static" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0" stop-color="currentColor" stop-opacity="0.38"></stop>
-                    <stop offset="1" stop-color="currentColor" stop-opacity="0.58"></stop>
-                  </linearGradient>
                 </defs>
-                <rect x="23" y="2" width="34" height="10" rx="2.5" fill="currentColor" opacity="0.38"></rect>
-                <rect x="24.5" y="2.8" width="31" height="1" rx="0.5" fill="white" opacity="0.16"></rect>
-                <line x1="23.5" y1="11.4" x2="56.5" y2="11.4" stroke="currentColor" stroke-opacity="0.28" stroke-width="0.6"></line>
-                <rect x="25" y="12" width="30" height="8" rx="0.5" fill="currentColor" opacity="0.2"></rect>
-                <line x1="25.5" y1="19.7" x2="54.5" y2="19.7" stroke="currentColor" stroke-opacity="0.2" stroke-width="0.6"></line>
-                <path d="M 29 20 L 29 26 C 29 29 18 35 18 38 L 18 112 Q 18 118 24 118 L 56 118 Q 62 118 62 112 L 62 38 C 62 35 51 29 51 26 L 51 20 Z" fill="rgba(9,9,9,0.88)" stroke="currentColor" stroke-opacity="0.2" stroke-width="1" stroke-linejoin="round"></path>
-                <line x1="29" y1="20" x2="29" y2="26" stroke="currentColor" stroke-opacity="0.24" stroke-width="0.6"></line>
-                <line x1="51" y1="20" x2="51" y2="26" stroke="currentColor" stroke-opacity="0.24" stroke-width="0.6"></line>
-                <g clip-path="url(#vial-liquid-clip-static)">
-                  <rect id="vialLiquid" x="18" y="38" width="44" height="80" fill="url(#vial-liquid-gradient-static)"></rect>
-                  <rect x="18" y="38" width="19.8" height="80" fill="url(#vial-left-highlight-static)" pointer-events="none"></rect>
-                  <rect x="55.4" y="38" width="6.6" height="80" fill="url(#vial-right-highlight-static)" pointer-events="none"></rect>
-                  <path d="M 19.5 38.5 L 19.5 111.5 Q 19.5 116.5 24 116.5 L 56 116.5 Q 60.5 116.5 60.5 111.5 L 60.5 38.5 Z" fill="none" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.75" pointer-events="none"></path>
-                </g>
-              </svg>
-              <span id="vialMeta">200 mg/mL · 0 mL остатък</span>
-            </div>
-          </section>
 
-          <div class="result-actions">
-            <div class="copy-action">
-              <button class="button button-primary copy-button" id="copyResult" type="button">
-                <span class="copy-icon-wrap" aria-hidden="true">
-                  <svg class="copy-icon" viewBox="0 0 16 16">
-                    <path d="M5 5.5H3.8C3.36 5.5 3 5.86 3 6.3V12.2C3 12.64 3.36 13 3.8 13H9.7C10.14 13 10.5 12.64 10.5 12.2V11" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M6.3 3H12.2C12.64 3 13 3.36 13 3.8V9.7C13 10.14 12.64 10.5 12.2 10.5H6.3C5.86 10.5 5.5 10.14 5.5 9.7V3.8C5.5 3.36 5.86 3 6.3 3Z" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linejoin="round" />
-                  </svg>
-                  <svg class="copy-check" viewBox="0 0 16 16">
-                    <path d="M13.5 4.5 6.5 11.5 2.8 7.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </span>
-                <span class="copy-button-label" data-i18n="copy">Копирай резултата</span>
-              </button>
-              <output class="copy-status" id="copyStatus" aria-live="polite"></output>
+                <rect x="28" y="61" width="14" height="32" rx="4" class="syringe-endcap" />
+                <line x1="42" y1="77" x2="106" y2="77" class="syringe-plunger-line" />
+                <path class="syringe-body" d="M108 50H588C594 50 599 55 599 61V63L628 66C634 67 638 72 638 77C638 82 634 87 628 88L599 91V93C599 99 594 104 588 104H108C102 104 97 99 97 93V61C97 55 102 50 108 50Z" />
+                <rect x="108" y="58" width="480" height="38" rx="5" class="syringe-channel" />
+                <rect id="syringeFill" x="108" y="58" width="48" height="38" clip-path="url(#barrelClip)" class="barrel-fill" />
+                <rect x="108" y="59" width="480" height="2" rx="1" class="syringe-inner-highlight" />
+                <rect x="108" y="58" width="480" height="38" rx="5" class="syringe-glass" />
+                <rect id="syringeStopper" x="152" y="54" width="8" height="46" rx="3" class="syringe-stopper" />
+
+                <g class="ticks" aria-hidden="true">
+                  <line x1="108" y1="43" x2="108" y2="112" class="major" />
+                  <line x1="132" y1="55" x2="132" y2="99" />
+                  <line x1="156" y1="48" x2="156" y2="106" />
+                  <line x1="180" y1="55" x2="180" y2="99" />
+                  <line x1="204" y1="43" x2="204" y2="112" class="major" />
+                  <line x1="228" y1="55" x2="228" y2="99" />
+                  <line x1="252" y1="48" x2="252" y2="106" />
+                  <line x1="276" y1="55" x2="276" y2="99" />
+                  <line x1="300" y1="43" x2="300" y2="112" class="major" />
+                  <line x1="324" y1="55" x2="324" y2="99" />
+                  <line x1="348" y1="48" x2="348" y2="106" />
+                  <line x1="372" y1="55" x2="372" y2="99" />
+                  <line x1="396" y1="43" x2="396" y2="112" class="major" />
+                  <line x1="420" y1="55" x2="420" y2="99" />
+                  <line x1="444" y1="48" x2="444" y2="106" />
+                  <line x1="468" y1="55" x2="468" y2="99" />
+                  <line x1="492" y1="43" x2="492" y2="112" class="major" />
+                  <line x1="516" y1="55" x2="516" y2="99" />
+                  <line x1="540" y1="48" x2="540" y2="106" />
+                  <line x1="564" y1="55" x2="564" y2="99" />
+                  <line x1="588" y1="43" x2="588" y2="112" class="major" />
+                </g>
+
+                <g class="syringe-labels" aria-hidden="true">
+                  <text x="88" y="24" class="scale-name">mL</text>
+                  <text x="108" y="24">1.0</text>
+                  <text x="204" y="24">0.8</text>
+                  <text x="300" y="24">0.6</text>
+                  <text x="396" y="24">0.4</text>
+                  <text x="492" y="24">0.2</text>
+                  <text x="588" y="24">0.0</text>
+                  <text x="88" y="140" class="scale-name">единици</text>
+                  <text x="108" y="140">100</text>
+                  <text x="204" y="140">80</text>
+                  <text x="300" y="140">60</text>
+                  <text x="396" y="140">40</text>
+                  <text x="492" y="140">20</text>
+                  <text x="588" y="140">0</text>
+                  <text x="645" y="81" class="u100-label">U-100</text>
+                </g>
+                <line x1="637" y1="77" x2="694" y2="77" class="needle" />
+                <path d="M694 75.5L704 77L694 78.5Z" class="needle-tip" />
+              </svg>
+              <p class="syringe-average-note" id="eodSyringeNote" data-i18n="eodSyringeNote" hidden>3.5× седмично (средно)</p>
+              <p class="warning" id="syringeWarning" hidden data-i18n="warning">Обемът надвишава скалата на 1 mL спринцовка.</p>
+
+              <div class="result-strip">
+                <div class="result-item">
+                  <span id="primaryResultLabel" data-i18n="mgPerInjection">mg на инжекция</span>
+                  <strong id="mgPerInjection">14.29 mg</strong>
+                  <div class="blend-breakdown" id="blendBreakdown" hidden></div>
+                  <small class="result-context" id="mgResultHelper"></small>
+                </div>
+                <div class="result-item">
+                  <span data-i18n="mlPerInjection">mL на инжекция</span>
+                  <strong id="mlPerInjection">0.07 mL</strong>
+                  <small class="result-context" id="mlResultHelper"></small>
+                </div>
+                <div class="result-item">
+                  <span data-i18n="unitsPerInjection">U-100 единици на инжекция</span>
+                  <strong id="unitsPerInjection">7.1 единици</strong>
+                  <small class="result-context" id="unitsResultHelper"></small>
+                </div>
+                <div class="result-item">
+                  <span id="weeklyAverageLabel" data-i18n="weeklyMl">mg седмично</span>
+                  <strong id="weeklyMl">630 mg</strong>
+                  <div class="weekly-blend-breakdown" id="weeklyBlendBreakdown" hidden></div>
+                  <small class="result-helper" id="eodDoseHelper" hidden>4 инжекции • 57.2 mg / 3 инжекции • 42.9 mg</small>
+                  <small class="result-context" id="weeklyResultHelper"></small>
+                </div>
+              </div>
             </div>
-            <button class="button button-secondary" id="resetCalculator" type="button" data-i18n="clear">Изчисти</button>
           </div>
+
         </article>
+      </section>
+
+      <section class="vial-usage-card" id="vialUsageCard" aria-labelledby="vialDays" hidden>
+        <div class="vial-usage-copy">
+          <div class="vial-usage-content">
+            <strong id="vialDays">~140 дни запас / 140 инжекции</strong>
+            <span id="vialDoses">10 mL флакон · 200 mg/mL</span>
+          </div>
+        </div>
+        <div class="vial-usage-visual">
+          <svg id="vialIllustration" class="vial-illustration" role="img" viewBox="0 0 80 122" aria-label="Флакон: 140 инжекции, 0 mL остатък.">
+            <defs>
+              <clipPath id="vial-liquid-clip-static">
+                <path d="M 19.5 38.5 L 19.5 111.5 Q 19.5 116.5 24 116.5 L 56 116.5 Q 60.5 116.5 60.5 111.5 L 60.5 38.5 Z"></path>
+              </clipPath>
+              <linearGradient id="vial-left-highlight-static" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="white" stop-opacity="0.22"></stop>
+                <stop offset="0.55" stop-color="white" stop-opacity="0.04"></stop>
+                <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+              </linearGradient>
+              <linearGradient id="vial-right-highlight-static" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" stop-color="white" stop-opacity="0"></stop>
+                <stop offset="0.55" stop-color="white" stop-opacity="0.04"></stop>
+                <stop offset="1" stop-color="white" stop-opacity="0.18"></stop>
+              </linearGradient>
+              <linearGradient id="vial-liquid-gradient-static" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="var(--vial-liquid)" stop-opacity="0.5"></stop>
+                <stop offset="1" stop-color="var(--vial-liquid-strong)" stop-opacity="0.78"></stop>
+              </linearGradient>
+            </defs>
+            <rect x="23" y="2" width="34" height="10" rx="2.5" fill="var(--vial-cap)"></rect>
+            <rect x="24.5" y="2.8" width="31" height="1" rx="0.5" fill="white" opacity="0.16"></rect>
+            <line x1="23.5" y1="11.4" x2="56.5" y2="11.4" stroke="currentColor" stroke-opacity="0.28" stroke-width="0.6"></line>
+            <rect x="25" y="12" width="30" height="8" rx="0.5" fill="var(--vial-neck-band)"></rect>
+            <line x1="25.5" y1="19.7" x2="54.5" y2="19.7" stroke="currentColor" stroke-opacity="0.2" stroke-width="0.6"></line>
+            <path d="M 29 20 L 29 26 C 29 29 18 35 18 38 L 18 112 Q 18 118 24 118 L 56 118 Q 62 118 62 112 L 62 38 C 62 35 51 29 51 26 L 51 20 Z" fill="var(--vial-glass)" stroke="var(--vial-outline)" stroke-width="1" stroke-linejoin="round"></path>
+            <line x1="29" y1="20" x2="29" y2="26" stroke="currentColor" stroke-opacity="0.24" stroke-width="0.6"></line>
+            <line x1="51" y1="20" x2="51" y2="26" stroke="currentColor" stroke-opacity="0.24" stroke-width="0.6"></line>
+            <g clip-path="url(#vial-liquid-clip-static)">
+              <rect id="vialLiquid" x="18" y="38" width="44" height="80" fill="url(#vial-liquid-gradient-static)"></rect>
+              <line class="vial-liquid-surface" id="vialLiquidSurface" x1="20.5" y1="38" x2="59.5" y2="38"></line>
+              <g class="vial-dose-guides" aria-hidden="true">
+                <line x1="18" x2="62" y1="102" y2="102"></line>
+                <line x1="18" x2="62" y1="86" y2="86"></line>
+                <line x1="18" x2="62" y1="70" y2="70"></line>
+                <line x1="18" x2="62" y1="54" y2="54"></line>
+              </g>
+              <rect x="18" y="38" width="19.8" height="80" fill="url(#vial-left-highlight-static)" pointer-events="none"></rect>
+              <rect x="55.4" y="38" width="6.6" height="80" fill="url(#vial-right-highlight-static)" pointer-events="none"></rect>
+              <path d="M 19.5 38.5 L 19.5 111.5 Q 19.5 116.5 24 116.5 L 56 116.5 Q 60.5 116.5 60.5 111.5 L 60.5 38.5 Z" fill="none" stroke="currentColor" stroke-opacity="0.12" stroke-width="0.75" pointer-events="none"></path>
+            </g>
+          </svg>
+          <span id="vialMeta">200 mg/mL · 0 mL остатък</span>
+        </div>
+      </section>
+
+      <section class="schedule-card" id="scheduleCard" aria-labelledby="scheduleTitle" hidden>
+        <div class="schedule-header">
+          <div>
+            <p class="schedule-kicker" id="scheduleTitle" data-i18n="scheduleTitle">График</p>
+            <h2 id="scheduleHeading">Всеки ден от днес</h2>
+          </div>
+          <button class="schedule-calendar-button" id="addToCalendar" type="button">
+            <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">
+              <path d="M4 2.5V5M12 2.5V5M2.75 6.5H13.25" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" />
+              <rect x="2.5" y="4" width="11" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.45" />
+              <path d="M8 8.25V11.25M6.5 9.75H9.5" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" />
+            </svg>
+            <span data-i18n="addToCalendar">Добави в календар</span>
+          </button>
+        </div>
+
+        <div class="schedule-duration" role="group" aria-label="Schedule duration">
+          <button class="schedule-pill is-active" type="button" data-schedule-duration="4" data-i18n="duration4">4 седмици</button>
+          <button class="schedule-pill" type="button" data-schedule-duration="8" data-i18n="duration8">8 седмици</button>
+          <button class="schedule-pill" type="button" data-schedule-duration="12" data-i18n="duration12">12 седмици</button>
+          <button class="schedule-pill" type="button" data-schedule-duration="vial" data-i18n="durationVial">До изчерпване</button>
+        </div>
+
+        <div class="schedule-window">
+          <p class="schedule-frequency-label" id="scheduleFrequencyLabel">Всеки ден</p>
+          <div class="schedule-days" id="scheduleDays" aria-live="polite"></div>
+        </div>
       </section>
 
       <p class="disclaimer">
