@@ -2278,14 +2278,14 @@ body.theme-light .legal-dialog-body {
 
 @media (max-width: 520px) {
   .app-shell {
-    width: calc(100% - var(--spacing-16));
+    width: calc(100% - var(--spacing-32));
     padding-top: var(--spacing-16);
     padding-bottom: var(--spacing-24);
   }
 
   .hero-panel {
-    gap: var(--spacing-24);
-    padding: 0 var(--spacing-12);
+    gap: var(--spacing-20);
+    padding: 0;
   }
 
   .hero-topbar {
@@ -2298,7 +2298,17 @@ body.theme-light .legal-dialog-body {
     flex-wrap: wrap;
     justify-content: flex-end;
     max-width: 100%;
-    padding-top: 2px;
+    gap: var(--spacing-6, 6px);
+    padding-top: 0;
+  }
+
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand-mark img {
+    width: 28px;
   }
 
   .hero-copy {
@@ -2314,7 +2324,7 @@ body.theme-light .legal-dialog-body {
   }
 
   h1 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   h2 {
