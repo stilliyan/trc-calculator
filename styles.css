@@ -2427,8 +2427,13 @@ body.theme-light .legal-dialog-body {
   }
 
   .vial-usage-content strong {
-    font-size: 21px;
+    font-size: 18px;
     line-height: 1.35;
+  }
+
+  .syringe-summary p,
+  .schedule-header h2 {
+    font-size: 18px;
   }
 
   .vial-usage-content span {
