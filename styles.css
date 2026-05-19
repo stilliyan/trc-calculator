@@ -98,8 +98,8 @@
   --color-fog-grey: var(--text-muted);
   --color-alabaster: #e5e5e6;
   --color-syringe-accent: #d99a22;
-  --vial-liquid: #d1a15a;
-  --vial-liquid-strong: #b9822f;
+  --vial-liquid: var(--color-syringe-accent);
+  --vial-liquid-strong: var(--color-syringe-accent);
   --vial-glass: rgba(12, 12, 12, 0.82);
   --vial-outline: rgba(245, 245, 245, 0.18);
   --vial-cap: rgba(245, 245, 245, 0.28);
@@ -180,8 +180,8 @@ body.theme-light {
   --color-muted-premium: var(--text-muted);
   --color-button-dark: var(--button-text);
   --color-syringe-accent: #c9a270;
-  --vial-liquid: #f8be62;
-  --vial-liquid-strong: #eba33e;
+  --vial-liquid: var(--color-syringe-accent);
+  --vial-liquid-strong: var(--color-syringe-accent);
   --vial-glass: #f7f5f0;
   --vial-outline: rgba(17, 17, 17, 0.26);
   --vial-cap: #5f5f5d;
@@ -451,7 +451,7 @@ h1 {
   margin-top: var(--spacing-4);
   color: var(--text-secondary);
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.48;
   white-space: pre-line;
 }
@@ -470,8 +470,6 @@ h1 {
 
 .hero-helper-link:hover {
   color: rgba(245, 245, 245, 0.96);
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 .result-actions {
@@ -1035,6 +1033,16 @@ input[type="number"]::-webkit-outer-spin-button {
   gap: var(--spacing-4);
   justify-items: start;
   min-width: 0;
+}
+
+.vial-usage-kicker {
+  margin: 0 0 var(--spacing-4);
+  color: var(--text-tertiary);
+  font-size: 12px;
+  font-weight: 450;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .vial-usage-content strong {
