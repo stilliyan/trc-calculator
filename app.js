@@ -61,7 +61,7 @@ const copy = {
   bg: {
     title: "TRT Калкулатор",
     documentTitle: "TRT Калкулатор",
-    subtitle: "Изчислява mL, U-100 единици и реална седмична доза според концентрация, количество на инжекция и честота.",
+    subtitle: "Изчислява mL, U-100 единици и седмична доза според концентрация и честота.",
     blendSubtitle: "Изчислява обща доза и разбивка по съставки за бленд препарати.",
     heroExample: "Нов тук? Виж примерна сметка",
     singleTitle: "Единична доза",
@@ -150,7 +150,7 @@ const copy = {
   en: {
     title: "TRT Dosage Calculator",
     documentTitle: "TRT Dosage Calculator",
-    subtitle: "Calculate mL, U-100 units, and weekly dose based on concentration, injection amount, and frequency.",
+    subtitle: "Calculate mL, U-100 units, and weekly dose from concentration and frequency.",
     blendSubtitle: "Calculate total dose and compound breakdown for blended formulations.",
     heroExample: "New here? See a worked example",
     singleTitle: "Single dose",
