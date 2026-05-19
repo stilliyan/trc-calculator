@@ -281,7 +281,7 @@ button {
   align-items: center;
   justify-content: flex-end;
   flex: 0 0 auto;
-  gap: var(--spacing-4, 4px);
+  gap: 0;
   padding-top: 4px;
 }
 
@@ -385,8 +385,8 @@ button {
 .theme-button {
   display: inline-grid;
   flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   place-items: center;
   border: 0;
   border-radius: var(--radius-pill);
@@ -2231,7 +2231,7 @@ body.theme-light .weekly-blend-breakdown {
 }
 
 body.theme-light .syringe-summary p {
-  color: var(--text-secondary);
+  color: var(--color-porcelain);
 }
 
 body.theme-light .syringe-summary strong {
@@ -2372,7 +2372,7 @@ body.theme-light .legal-dialog-body {
     flex-wrap: wrap;
     justify-content: flex-end;
     max-width: 100%;
-    gap: var(--spacing-10, 10px);
+    gap: 0;
     padding-top: 2px;
   }
 
