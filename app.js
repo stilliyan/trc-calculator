@@ -61,7 +61,7 @@ const copy = {
   bg: {
     title: "TRT Калкулатор",
     documentTitle: "TRT Калкулатор",
-    subtitle: "Изчислява mL, U-100 единици и седмична доза според концентрация и честота.",
+    subtitle: "Образователен калкулатор, който превръща седмична TRT цел или mL на инжекция в обем, U-100 единици и реална седмична доза според честотата.",
     blendSubtitle: "Изчислява обща доза и разбивка по съставки за бленд препарати.",
     heroExample: "Нов тук? Виж примерна сметка",
     singleTitle: "Единична доза",
@@ -150,7 +150,7 @@ const copy = {
   en: {
     title: "TRT Dosage Calculator",
     documentTitle: "TRT Dosage Calculator",
-    subtitle: "Calculate mL, U-100 units, and weekly dose from concentration and frequency.",
+    subtitle: "Educational calculator that converts a TRT weekly target or mL per injection into volume, U-100 units, and the real weekly dose based on frequency.",
     blendSubtitle: "Calculate total dose and compound breakdown for blended formulations.",
     heroExample: "New here? See a worked example",
     singleTitle: "Single dose",
@@ -294,6 +294,7 @@ const output = {
   vialUsageCard: document.querySelector("#vialUsageCard"),
   vialIllustration: document.querySelector("#vialIllustration"),
   vialLiquid: document.querySelector("#vialLiquid"),
+  vialLeftover: document.querySelector("#vialLeftover"),
   vialLiquidSurface: document.querySelector("#vialLiquidSurface"),
   vialDays: document.querySelector("#vialDays"),
   vialDoses: document.querySelector("#vialDoses"),
@@ -921,6 +922,7 @@ const updateVialUsage = (result) => {
   const daysOfSupply = valid && dosesPerVial !== null ? dosesPerVial * intervalDays : null;
   const leftoverMl = valid && dosesPerVial !== null ? defaults.vialVolumeMl - dosesPerVial * ml : null;
   const usableVialMl = valid ? Math.max(0, defaults.vialVolumeMl - leftoverMl) : 0;
+  const leftoverHeight = valid ? Math.min(80, (leftoverMl / defaults.vialVolumeMl) * 80) : 0;
   const liquidHeight = valid ? Math.min(80, (usableVialMl / defaults.vialVolumeMl) * 80) : 0;
   const liquidY = 118 - liquidHeight;
 
@@ -942,6 +944,8 @@ const updateVialUsage = (result) => {
   output.vialMeta.textContent = vialMeta;
   output.vialLiquid.setAttribute("height", String(liquidHeight));
   output.vialLiquid.setAttribute("y", String(liquidY));
+  output.vialLeftover.setAttribute("height", String(leftoverHeight));
+  output.vialLeftover.style.opacity = leftoverMl > 0.01 ? "0.9" : "0";
   output.vialLiquidSurface.setAttribute("y1", String(liquidY));
   output.vialLiquidSurface.setAttribute("y2", String(liquidY));
   output.vialLiquidSurface.style.opacity = usableVialMl > 0.01 ? "1" : "0";
