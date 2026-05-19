@@ -1186,6 +1186,8 @@ const updateThemeButton = () => {
   if (!buttons.theme) return;
 
   const isLight = activeTheme === "light";
+  buttons.theme.classList.toggle("is-light", isLight);
+  buttons.theme.classList.toggle("is-dark", !isLight);
   buttons.theme.classList.toggle("is-active", isLight);
   buttons.theme.setAttribute("aria-pressed", String(isLight));
   buttons.theme.setAttribute("aria-label", copy[activeLanguage][isLight ? "darkTheme" : "lightTheme"]);
