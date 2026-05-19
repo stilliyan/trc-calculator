@@ -442,7 +442,7 @@ p {
 h1 {
   color: var(--color-porcelain);
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 510;
   line-height: 1.2;
   letter-spacing: var(--tracking-heading);
 }
