@@ -80,6 +80,9 @@
   --text-main: #f5f5f5;
   --text-muted: #a3a3a3;
   --text-soft: #b8b8b8;
+  --text-secondary: rgba(245, 245, 245, 0.72);
+  --text-tertiary: rgba(245, 245, 245, 0.62);
+  --text-helper: rgba(245, 245, 245, 0.68);
   --footer-muted: rgba(176, 176, 176, 0.54);
   --button-bg: #ffffff;
   --button-text: #0a0a0a;
@@ -153,6 +156,9 @@ body.theme-light {
   --text-main: #111111;
   --text-muted: #707070;
   --text-soft: #111111;
+  --text-secondary: rgba(17, 17, 17, 0.68);
+  --text-tertiary: rgba(17, 17, 17, 0.56);
+  --text-helper: rgba(17, 17, 17, 0.62);
   --footer-muted: rgba(55, 55, 50, 0.58);
   --button-bg: #111111;
   --button-text: #ffffff;
@@ -442,8 +448,9 @@ h1 {
 
 .hero-copy p {
   margin-top: var(--spacing-4);
-  color: var(--color-muted-premium);
+  color: var(--text-secondary);
   font-size: 15px;
+  font-weight: 400;
   line-height: 1.6;
 }
 
@@ -451,7 +458,7 @@ h1 {
   display: inline-flex;
   width: fit-content;
   margin-top: var(--spacing-16);
-  color: rgba(245, 245, 245, 0.78);
+  color: var(--text-secondary);
   font-size: 13px;
   font-weight: 400;
   line-height: 1.3;
@@ -700,9 +707,9 @@ input:focus-visible,
   border: 1px solid transparent;
   border-radius: var(--radius-pill);
   background: transparent;
-  color: rgba(245, 245, 245, 0.56);
+  color: var(--text-secondary);
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1;
   padding: 7px 12px;
   user-select: none;
@@ -720,9 +727,9 @@ input:focus-visible,
   border: 1px solid transparent;
   border-radius: var(--radius-pill);
   background: transparent;
-  color: rgba(245, 245, 245, 0.56);
+  color: var(--text-secondary);
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1;
   padding: 7px 12px;
   user-select: none;
@@ -735,10 +742,10 @@ input:focus-visible,
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.025);
-  color: rgba(245, 245, 245, 0.58);
+  color: var(--text-secondary);
   padding: 0 8px;
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1;
   white-space: nowrap;
   user-select: none;
@@ -768,7 +775,7 @@ input:focus-visible,
 .input-method-button:not(.is-active):hover,
 .mode-button:not(.is-active):hover {
   background: rgba(255, 255, 255, 0.05);
-  color: rgba(245, 245, 245, 0.78);
+  color: rgba(245, 245, 245, 0.88);
 }
 
 .compound-button:active,
@@ -801,9 +808,18 @@ input:focus-visible,
 h2 {
   color: var(--color-porcelain);
   font-size: 19px;
-  font-weight: 500;
+  font-weight: 450;
   line-height: var(--leading-heading);
   letter-spacing: var(--tracking-heading);
+}
+
+.form-title {
+  max-width: 100%;
+  color: var(--color-porcelain);
+  opacity: 0.9;
+  font-size: 17px;
+  font-weight: 450;
+  line-height: 1.35;
 }
 
 .field-grid {
@@ -821,9 +837,9 @@ h2 {
 }
 
 .field > span:first-child {
-  color: var(--color-muted-premium);
+  color: var(--text-secondary);
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1.45;
 }
 
@@ -934,7 +950,7 @@ input[type="number"]::-webkit-outer-spin-button {
   color: var(--text-soft);
   padding: 0 12px;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 450;
   text-align: left;
 }
 
@@ -964,9 +980,9 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .compound-row > span:first-child {
-  color: var(--color-muted-premium);
+  color: var(--text-secondary);
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1.45;
 }
 
@@ -1043,8 +1059,9 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .vial-usage-visual span {
   max-width: 180px;
-  color: rgba(245, 245, 245, 0.56);
+  color: var(--text-tertiary);
   font-size: 13px;
+  font-weight: 400;
   line-height: 1.35;
   text-align: center;
 }
@@ -1099,9 +1116,9 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .schedule-kicker {
   margin-bottom: var(--spacing-4);
-  color: var(--color-muted-premium);
+  color: var(--text-tertiary);
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 450;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -1124,10 +1141,10 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 13px;
   background: rgba(255, 255, 255, 0.035);
-  color: rgba(245, 245, 245, 0.9);
+  color: rgba(245, 245, 245, 0.92);
   padding: 0 var(--spacing-12);
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 450;
   transition: opacity 160ms ease, background-color 160ms ease;
 }
 
@@ -1162,10 +1179,10 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-pill);
   background: rgba(255, 255, 255, 0.025);
-  color: rgba(245, 245, 245, 0.68);
+  color: var(--text-secondary);
   padding: 0 12px;
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1;
   white-space: nowrap;
   user-select: none;
@@ -1190,7 +1207,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .schedule-frequency-label {
   color: var(--color-porcelain);
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1.35;
 }
 
@@ -1220,9 +1237,9 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .schedule-weekday-row > span {
-  color: rgba(245, 245, 245, 0.38);
+  color: rgba(245, 245, 245, 0.54);
   font-size: 10px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase;
@@ -1243,9 +1260,9 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .schedule-month-label {
-  color: rgba(245, 245, 245, 0.58);
+  color: var(--text-tertiary);
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1.2;
   text-align: left;
 }
@@ -1382,7 +1399,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .schedule-dose-line {
-  color: rgba(245, 245, 245, 0.78);
+  color: var(--text-helper);
   font-size: 8px;
   font-weight: 400;
   line-height: 1;
@@ -1409,7 +1426,7 @@ input[type="number"]::-webkit-outer-spin-button {
   display: block;
   max-width: 100%;
   margin-top: 1px;
-  color: rgba(245, 245, 245, 0.78);
+  color: var(--text-helper);
   font-size: 8px;
   font-weight: 400;
   line-height: 1;
@@ -1453,14 +1470,15 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .result-item span,
 .metric span {
-  color: var(--color-muted-premium);
+  color: var(--text-secondary);
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1.45;
 }
 
 .syringe-module .result-item > span {
-  color: rgba(245, 245, 245, 0.58);
+  color: var(--text-secondary);
+  font-weight: 450;
 }
 
 .result-item strong,
@@ -1468,7 +1486,7 @@ input[type="number"]::-webkit-outer-spin-button {
   color: var(--color-light-steel);
   font-family: var(--font-berkeley-mono);
   font-size: 17px;
-  font-weight: 400;
+  font-weight: 510;
   line-height: 1.4;
   letter-spacing: 0;
 }
@@ -1480,11 +1498,12 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .syringe-module .result-item strong {
   color: #f5f5f5;
+  font-weight: 400;
 }
 
 .result-helper {
   display: block;
-  color: rgba(245, 245, 245, 0.7);
+  color: var(--text-helper);
   font-family: var(--font-inter-variable);
   font-size: 12px;
   font-weight: 400;
@@ -1497,7 +1516,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .result-context {
   display: block;
-  color: rgba(245, 245, 245, 0.54);
+  color: var(--text-tertiary);
   font-family: var(--font-inter-variable);
   font-size: 11px;
   font-weight: 400;
@@ -1507,7 +1526,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .blend-breakdown {
   display: block;
   max-width: 100%;
-  color: rgba(245, 245, 245, 0.7);
+  color: var(--text-helper);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.45;
@@ -1522,7 +1541,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .weekly-blend-breakdown {
   display: block;
   max-width: 100%;
-  color: rgba(245, 245, 245, 0.62);
+  color: var(--text-tertiary);
   font-size: 10px;
   font-weight: 400;
   line-height: 1.35;
@@ -1559,20 +1578,20 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .syringe-summary p {
   margin: 0;
-  color: rgba(245, 245, 245, 0.74);
+  color: var(--text-secondary);
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 450;
   line-height: 1.35;
   letter-spacing: 0;
 }
 
 .syringe-summary strong {
   color: var(--color-porcelain);
-  font-weight: 500;
+  font-weight: 510;
 }
 
 .syringe-summary span {
-  color: rgba(245, 245, 245, 0.5);
+  color: var(--text-tertiary);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.35;
@@ -1587,8 +1606,9 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .syringe-readout span {
-  color: var(--color-muted-premium);
+  color: var(--text-secondary);
   font-size: 13px;
+  font-weight: 450;
   line-height: 1.45;
 }
 
@@ -1931,7 +1951,7 @@ body.theme-light .input-method-button.is-active {
 body.theme-light .input-method-button {
   border-color: #e0e0e0;
   background: #ffffff;
-  color: rgba(17, 17, 17, 0.66);
+  color: var(--text-secondary);
 }
 
 body.theme-light .language-button,
@@ -1939,7 +1959,7 @@ body.theme-light .compound-button,
 body.theme-light .input-method-button,
 body.theme-light .mode-button,
 body.theme-light .theme-button {
-  color: rgba(21, 21, 21, 0.66);
+  color: var(--text-secondary);
 }
 
 body.theme-light .language-button:hover {
@@ -2093,7 +2113,7 @@ body.theme-light .syringe-module .result-item {
 }
 
 body.theme-light .syringe-module .result-item > span {
-  color: rgba(17, 17, 17, 0.56);
+  color: var(--text-secondary);
 }
 
 body.theme-light .syringe-module .result-item strong {
@@ -2153,11 +2173,11 @@ body.theme-light .blend-breakdown,
 body.theme-light .result-helper,
 body.theme-light .result-context,
 body.theme-light .weekly-blend-breakdown {
-  color: rgba(21, 21, 21, 0.58);
+  color: var(--text-helper);
 }
 
 body.theme-light .syringe-summary p {
-  color: rgba(17, 17, 17, 0.68);
+  color: var(--text-secondary);
 }
 
 body.theme-light .syringe-summary strong {
@@ -2165,7 +2185,7 @@ body.theme-light .syringe-summary strong {
 }
 
 body.theme-light .syringe-summary span {
-  color: rgba(17, 17, 17, 0.52);
+  color: var(--text-tertiary);
 }
 
 body.theme-light .syringe-plunger-line,
@@ -2329,6 +2349,11 @@ body.theme-light .legal-dialog-body {
 
   h2 {
     font-size: 19px;
+  }
+
+  .form-title {
+    font-size: 16px;
+    line-height: 1.32;
   }
 
   .input-wrap,
