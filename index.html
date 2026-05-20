@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TRT Dose Calculator — Simple Injection & Dosage Planner</title>
-    <meta name="description" content="A clean calculator for TRT and testosterone blends. Calculate mg, ml, weekly dosage, vial usage and injection planning with a simple visual interface." />
+    <title>TRT Dose Calculator – Calculate Testosterone & Steroid Dosages</title>
+    <meta name="description" content="Modern TRT and steroid dosage calculator for testosterone, microdosing and injection planning. Convert mg to mL instantly with a clean and simple interface." />
+    <meta name="keywords" content="TRT dose calculator, testosterone dosage calculator, steroid calculator, mg to mL calculator, TRT microdosing, testosterone injection calculator" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0a0a0a" />
     <link rel="canonical" href="https://www.trtdose.com" />
@@ -16,15 +17,15 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.trtdose.com" />
     <meta property="og:site_name" content="TRT Dose Calculator" />
-    <meta property="og:title" content="TRT Dose Calculator — Simple Injection & Dosage Planner" />
-    <meta property="og:description" content="A clean calculator for TRT and testosterone blends. Calculate mg, ml, weekly dosage, vial usage and injection planning with a simple visual interface." />
+    <meta property="og:title" content="TRT Dose Calculator" />
+    <meta property="og:description" content="Modern TRT and steroid dosage calculator for accurate microdosing and injection planning." />
     <meta property="og:image" content="https://www.trtdose.com/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="TRT Dose Calculator — Plan your weekly dose with precision." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="TRT Dose Calculator — Simple Injection & Dosage Planner" />
-    <meta name="twitter:description" content="A clean calculator for TRT and testosterone blends. Calculate mg, ml, weekly dosage, vial usage and injection planning with a simple visual interface." />
+    <meta name="twitter:title" content="TRT Dose Calculator" />
+    <meta name="twitter:description" content="Modern TRT and steroid dosage calculator for accurate microdosing and injection planning." />
     <meta name="twitter:image" content="https://www.trtdose.com/og-image.png" />
     <meta name="twitter:image:alt" content="TRT Dose Calculator — Plan your weekly dose with precision." />
     <script>
@@ -80,10 +81,16 @@
           </div>
         </div>
         <div class="hero-copy">
-          <h1 id="page-title">TRT Калкулатор</h1>
+          <h1 id="page-title">TRT Dose Calculator</h1>
           <p id="subtitle">Образователен калкулатор, който превръща седмична TRT цел или mL на инжекция в обем, U&#8209;100 единици и реална седмична доза според честотата.</p>
-          <!-- TODO: Wire this helper link to a worked example section when examples are added. -->
-          <a class="hero-helper-link" href="#worked-example" data-i18n="heroExample">Нов тук? Виж примерна сметка</a>
+          <a class="hero-helper-link" href="./how-it-works.html">
+            <svg class="hero-helper-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 16v-4"></path>
+              <path d="M12 8h.01"></path>
+            </svg>
+            <span data-i18n="heroExample">Виж как работи</span>
+          </a>
         </div>
       </section>
 
@@ -452,8 +459,10 @@
         </div>
       </section>
 
-      <p class="disclaimer">
-        <span id="disclaimer">Само с образователна цел - не е медицински съвет. Формулите са описани, а ограниченията са документирани. Провери всяка доза с лекар.</span>
+      <p class="disclaimer" id="disclaimer">
+        <strong data-i18n="disclaimerLead">Само с образователна цел - не е медицински съвет.</strong>
+        <span data-i18n="disclaimerVerify">Провери всяка доза с лекар.</span>
+        <button class="disclaimer-link" type="button" data-legal-open="terms" data-i18n="disclaimerRead">Прочети пълния disclaimer.</button>
       </p>
 
       <nav class="legal-links" aria-label="Legal" hidden>

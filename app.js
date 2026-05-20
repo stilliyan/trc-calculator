@@ -60,10 +60,10 @@ const detectPreferredLanguage = () => {
 const copy = {
   bg: {
     title: "TRT Калкулатор",
-    documentTitle: "TRT Калкулатор",
+    documentTitle: "TRT Dose Calculator – Calculate Testosterone & Steroid Dosages",
     subtitle: "Образователен калкулатор, който превръща седмична TRT цел или mL на инжекция в обем, U\u2011100 единици и реална седмична доза според честотата.",
     blendSubtitle: "Образователен калкулатор, който превръща mL на инжекция и концентрации по съставки в обща доза, U\u2011100 единици и седмична разбивка.",
-    heroExample: "Нов тук? Виж примерна сметка",
+    heroExample: "Виж как работи",
     singleTitle: "Единична доза",
     weeklyTitle: "Въведете седмична цел и концентрация",
     compoundSingle: "TRT",
@@ -130,7 +130,9 @@ const copy = {
     twiceWeekly: "2 пъти седмично",
     threeWeekly: "3 пъти седмично",
     custom: "Персонално",
-    disclaimer: "Само с образователна цел - не е медицински съвет. Формулите са описани, а ограниченията са документирани. Провери всяка доза с лекар.",
+    disclaimerLead: "Само с образователна цел - не е медицински съвет.",
+    disclaimerVerify: "Провери всяка доза с лекар.",
+    disclaimerRead: "Прочети пълния disclaimer.",
     supportButton: "Buy me a Monster",
     supportAria: "Buy me a Monster",
     privacyLink: "Поверителност",
@@ -151,10 +153,10 @@ const copy = {
   },
   en: {
     title: "TRT Dosage Calculator",
-    documentTitle: "TRT Dosage Calculator",
+    documentTitle: "TRT Dose Calculator – Calculate Testosterone & Steroid Dosages",
     subtitle: "Educational calculator that converts a TRT weekly target or mL per injection into volume, U-100 units, and the real weekly dose based on frequency.",
     blendSubtitle: "Educational calculator that converts mL per injection and compound concentrations into total dose, U-100 units, and weekly breakdown.",
-    heroExample: "New here? See a worked example",
+    heroExample: "See how it works",
     singleTitle: "Single dose",
     weeklyTitle: "Enter your weekly target and concentration",
     compoundSingle: "TRT",
@@ -221,7 +223,9 @@ const copy = {
     twiceWeekly: "2x weekly",
     threeWeekly: "3x weekly",
     custom: "Custom",
-    disclaimer: "Educational only - not medical advice. Every formula is cited and every limitation is documented. Verify any dose with a licensed prescriber.",
+    disclaimerLead: "Educational use only - not medical advice.",
+    disclaimerVerify: "Verify any dose with a licensed prescriber.",
+    disclaimerRead: "Read the full disclaimer.",
     supportButton: "Buy me a Monster",
     supportAria: "Buy me a Monster",
     privacyLink: "Privacy",
@@ -1139,7 +1143,6 @@ const setLanguage = (language) => {
   document.documentElement.lang = language;
   document.title = strings.documentTitle;
   updateHeroCopy();
-  disclaimerNode.textContent = strings.disclaimer;
 
   i18nNodes.forEach((node) => {
     node.textContent = strings[node.dataset.i18n];
