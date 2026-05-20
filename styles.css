@@ -2183,6 +2183,17 @@ body.theme-light .schedule-window {
   background: #fafafa;
 }
 
+body.theme-light .schedule-calendar-button {
+  border-color: #e2e2e2;
+  background: #fafafa;
+  color: #111111;
+}
+
+body.theme-light .schedule-calendar-button:hover {
+  background: #f3f3f4;
+  color: #111111;
+}
+
 body.theme-light .schedule-day {
   border-color: #e5e5e5;
   background: #ffffff;
@@ -2435,12 +2446,29 @@ body.theme-light .legal-dialog-body {
   }
 
   .syringe-module {
-    padding: var(--spacing-20) var(--spacing-12);
+    padding: var(--spacing-22, 22px) var(--spacing-18, 18px);
+  }
+
+  .syringe-summary {
+    margin-bottom: var(--spacing-24);
+  }
+
+  .syringe-readout {
+    margin-bottom: var(--spacing-16);
+  }
+
+  .syringe-module .result-strip {
+    gap: var(--spacing-12);
+    margin-top: var(--spacing-24);
+  }
+
+  .syringe-module .result-item {
+    padding: var(--spacing-18, 18px);
   }
 
   .vial-usage-card {
     grid-template-columns: 1fr;
-    padding: var(--spacing-18, 18px);
+    padding: var(--spacing-20);
   }
 
   .vial-usage-copy {
@@ -2468,11 +2496,10 @@ body.theme-light .legal-dialog-body {
   }
 
   .syringe {
-    width: calc(100% + 28px);
-    height: 110px;
-    max-width: none;
-    margin-left: -14px;
-    margin-right: -14px;
+    width: 100%;
+    height: 104px;
+    max-width: 100%;
+    margin: var(--spacing-4) 0 var(--spacing-8);
   }
 
   .syringe-labels {
@@ -2554,8 +2581,13 @@ body.theme-light .legal-dialog-body {
   }
 
   .theme-button {
-    width: 36px;
-    height: 36px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .theme-button svg {
+    width: 16px;
+    height: 16px;
   }
 
   .language-button {
@@ -2591,11 +2623,11 @@ body.theme-light .legal-dialog-body {
   }
 
   .schedule-card {
-    padding: var(--spacing-14, 14px);
+    padding: var(--spacing-20);
   }
 
   .schedule-window {
-    padding: var(--spacing-12);
+    padding: var(--spacing-14, 14px);
   }
 
   .schedule-weekday-row,
