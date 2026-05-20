@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "trtdose.com"
+        }
+      ],
+      "destination": "https://www.trtdose.com/:path*",
+      "permanent": true
+    }
+  ]
+}
