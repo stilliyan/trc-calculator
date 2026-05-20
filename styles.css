@@ -3,7 +3,7 @@
   src: url("./fonts/Geist-Light.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   src: url("./fonts/Geist-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -19,7 +19,7 @@
   src: url("./fonts/Geist-Medium.otf") format("opentype");
   font-weight: 510;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -27,7 +27,7 @@
   src: url("./fonts/Geist-SemiBold.otf") format("opentype");
   font-weight: 590;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -35,7 +35,7 @@
   src: url("./fonts/Geist-Bold.otf") format("opentype");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -43,7 +43,7 @@
   src: url("./fonts/GeistMono-Light.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -51,7 +51,7 @@
   src: url("./fonts/GeistMono-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -59,7 +59,7 @@
   src: url("./fonts/GeistMono-Medium.otf") format("opentype");
   font-weight: 510;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -67,7 +67,7 @@
   src: url("./fonts/GeistPixel-Square.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 :root {
@@ -490,6 +490,10 @@ h1 {
   font-weight: 350;
   line-height: 1.48;
   white-space: pre-line;
+}
+
+.guide-hero .hero-copy p {
+  min-height: 2.96em;
 }
 
 .hero-helper-link {
@@ -3118,6 +3122,10 @@ body.theme-light .disclaimer-link:hover {
   .guide-hero {
     gap: var(--spacing-24);
     margin-bottom: var(--spacing-24);
+  }
+
+  .guide-hero .hero-copy p {
+    min-height: 4.44em;
   }
 
   .worked-example,
