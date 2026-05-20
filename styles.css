@@ -894,6 +894,7 @@ h2 {
   font-size: 13px;
   font-weight: 400;
   line-height: 1.45;
+  padding-left: var(--spacing-8);
 }
 
 .input-wrap,
