@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TRT Dose Calculator — Simple Injection & Dosage Planner</title>
     <meta name="description" content="A clean calculator for TRT and testosterone blends. Calculate mg, ml, weekly dosage, vial usage and injection planning with a simple visual interface." />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0a0a0a" />
     <link rel="canonical" href="https://www.trtdose.com" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -17,10 +19,22 @@
     <meta property="og:title" content="TRT Dose Calculator — Simple Injection & Dosage Planner" />
     <meta property="og:description" content="A clean calculator for TRT and testosterone blends. Calculate mg, ml, weekly dosage, vial usage and injection planning with a simple visual interface." />
     <meta property="og:image" content="https://www.trtdose.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="TRT Dose Calculator — Plan your weekly dose with precision." />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="TRT Dose Calculator — Simple Injection & Dosage Planner" />
     <meta name="twitter:description" content="A clean calculator for TRT and testosterone blends. Calculate mg, ml, weekly dosage, vial usage and injection planning with a simple visual interface." />
     <meta name="twitter:image" content="https://www.trtdose.com/og-image.png" />
+    <meta name="twitter:image:alt" content="TRT Dose Calculator — Plan your weekly dose with precision." />
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -304,26 +318,34 @@
               <div class="result-strip">
                 <div class="result-item">
                   <span data-i18n="mlPerInjection">mL на инжекция</span>
-                  <strong id="mlPerInjection">0.07 mL</strong>
-                  <small class="result-context" id="mlResultHelper"></small>
+                  <div class="result-value-group">
+                    <strong id="mlPerInjection">0.07 mL</strong>
+                    <small class="result-context" id="mlResultHelper"></small>
+                  </div>
                 </div>
                 <div class="result-item">
                   <span id="primaryResultLabel" data-i18n="mgPerInjection">Mg на инжекция</span>
-                  <strong id="mgPerInjection">14.29 mg</strong>
-                  <div class="blend-breakdown" id="blendBreakdown" hidden></div>
-                  <small class="result-context" id="mgResultHelper"></small>
+                  <div class="result-value-group">
+                    <strong id="mgPerInjection">14.29 mg</strong>
+                    <div class="blend-breakdown" id="blendBreakdown" hidden></div>
+                    <small class="result-context" id="mgResultHelper"></small>
+                  </div>
                 </div>
                 <div class="result-item">
                   <span data-i18n="unitsPerInjection">U-100 единици на инжекция</span>
-                  <strong id="unitsPerInjection">7.1 единици</strong>
-                  <small class="result-context" id="unitsResultHelper"></small>
+                  <div class="result-value-group">
+                    <strong id="unitsPerInjection">7.1 единици</strong>
+                    <small class="result-context" id="unitsResultHelper"></small>
+                  </div>
                 </div>
                 <div class="result-item">
                   <span id="weeklyAverageLabel" data-i18n="weeklyMl">mg седмично</span>
-                  <strong id="weeklyMl">630 mg</strong>
-                  <div class="weekly-blend-breakdown" id="weeklyBlendBreakdown" hidden></div>
-                  <small class="result-helper" id="eodDoseHelper" hidden>4 инжекции • 57.2 mg / 3 инжекции • 42.9 mg</small>
-                  <small class="result-context" id="weeklyResultHelper"></small>
+                  <div class="result-value-group">
+                    <strong id="weeklyMl">630 mg</strong>
+                    <div class="weekly-blend-breakdown" id="weeklyBlendBreakdown" hidden></div>
+                    <small class="result-helper" id="eodDoseHelper" hidden>4 инжекции • 57.2 mg / 3 инжекции • 42.9 mg</small>
+                    <small class="result-context" id="weeklyResultHelper"></small>
+                  </div>
                 </div>
               </div>
             </div>
