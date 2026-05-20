@@ -492,6 +492,15 @@ h1 {
   white-space: pre-line;
 }
 
+.guide-hero .hero-copy {
+  min-height: 124px;
+}
+
+.guide-hero .hero-copy p {
+  max-width: 680px;
+  min-height: 2.96em;
+}
+
 .hero-helper-link {
   display: inline-flex;
   align-items: center;
@@ -3123,6 +3132,14 @@ body.theme-light .disclaimer-link:hover {
   .guide-hero {
     gap: var(--spacing-24);
     margin-bottom: var(--spacing-24);
+  }
+
+  .guide-hero .hero-copy {
+    min-height: 150px;
+  }
+
+  .guide-hero .hero-copy p {
+    min-height: 4.44em;
   }
 
   .worked-example,
