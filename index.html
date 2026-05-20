@@ -27,14 +27,6 @@
     <meta name="twitter:description" content="A clean calculator for TRT and testosterone blends. Calculate mg, ml, weekly dosage, vial usage and injection planning with a simple visual interface." />
     <meta name="twitter:image" content="https://www.trtdose.com/og-image.png" />
     <meta name="twitter:image:alt" content="TRT Dose Calculator — Plan your weekly dose with precision." />
-    <script>
-      window.va =
-        window.va ||
-        function () {
-          (window.vaq = window.vaq || []).push(arguments);
-        };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -243,7 +235,7 @@
               </div>
               <svg id="syringeSvg" class="syringe" viewBox="0 0 720 172" role="img" aria-labelledby="syringeTitle syringeDescription" aria-label="U-100 спринцовка: 0.10 mL, 10 единици">
                 <title id="syringeTitle">U-100 скала на спринцовка</title>
-                <desc id="syringeDescription">Едномилилитрова U-100 скала с mL отгоре, единици отдолу и живо запълване според изчислените единици.</desc>
+                <desc id="syringeDescription">Едномилилитрова U-100 скала с mL отгоре, единици отдолу и живо запълване според изчислен��те единици.</desc>
                 <defs>
                   <linearGradient id="barrelSheen" x1="0" x2="0" y1="40" y2="104" gradientUnits="userSpaceOnUse">
                     <stop offset="0%" stop-color="var(--color-porcelain)" stop-opacity="0.11" />
@@ -489,6 +481,6 @@
       </div>
     </dialog>
 
-    <script src="./app.js"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>

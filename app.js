@@ -1,3 +1,8 @@
+import { inject } from '@vercel/analytics';
+
+// Initialize Vercel Web Analytics
+inject();
+
 const defaults = {
   language: "bg",
   mode: "single",
@@ -738,7 +743,7 @@ const updateSyringe = ({ ml, units, valid, isEod = false, injectionsPerWeek = nu
       : `Инжектирайте ~${summaryMl}${frequencyPhrase ? ` ${frequencyPhrase}` : ""} (${summaryUnits} на U-100 спринцовка).`
     : activeLanguage === "en"
       ? "Enter values to preview syringe volume."
-      : "Попълни стойности за преглед на обема.";
+      : "Попълн�� стойности за преглед на обема.";
   output.syringeFrequencySummary.textContent = valid ? frequencyText : "";
   output.syringeFrequencySummary.hidden = !valid || !frequencyText;
   output.syringeFill.setAttribute("x", String(fillX));

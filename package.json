@@ -1,0 +1,20 @@
+{
+  "name": "trt-dose-calculator",
+  "version": "1.0.0",
+  "description": "Simple static calculator for converting TRT dose values between mg, mL, and U-100 syringe units",
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 4173",
+    "install-analytics": "npm install @vercel/analytics"
+  },
+  "keywords": [
+    "trt",
+    "calculator",
+    "dosage"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.2.2"
+  }
+}
