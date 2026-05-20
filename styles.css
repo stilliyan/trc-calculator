@@ -237,7 +237,7 @@ button {
 .app-shell {
   width: min(720px, calc(100% - var(--spacing-32)));
   margin: 0 auto;
-  padding: var(--spacing-24) 0 var(--spacing-64);
+  padding: var(--spacing-24) 0 var(--spacing-40);
 }
 
 .hero-panel {
@@ -1224,6 +1224,58 @@ input[type="number"]::-webkit-outer-spin-button {
   text-decoration: none;
 }
 
+.legal-shell {
+  width: min(720px, calc(100% - var(--spacing-32)));
+}
+
+.legal-hero {
+  margin-bottom: var(--spacing-24);
+}
+
+.legal-title-block {
+  gap: var(--spacing-12);
+}
+
+.legal-title-block h1 {
+  max-width: 720px;
+}
+
+.legal-updated {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.legal-content {
+  display: grid;
+  gap: var(--spacing-32);
+  max-width: 720px;
+  padding-top: var(--spacing-8);
+}
+
+.legal-section {
+  display: grid;
+  gap: var(--spacing-12);
+}
+
+.legal-section h2 {
+  margin: 0;
+  color: var(--color-porcelain);
+  font-size: 21px;
+  font-weight: 510;
+  line-height: 1.28;
+}
+
+.legal-section p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.62;
+}
+
 .guide-return {
   display: flex;
   justify-content: flex-start;
@@ -1236,9 +1288,9 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   justify-content: center;
   gap: var(--spacing-8);
-  min-height: 38px;
+  min-height: 40px;
   border-radius: var(--radius-pill);
-  padding: 0 var(--spacing-16);
+  padding: 0 var(--spacing-20);
   font-size: 13px;
   font-weight: 450;
   line-height: 1.2;
@@ -2724,7 +2776,11 @@ body.theme-light .disclaimer-link:hover {
   .app-shell {
     width: min(100% - var(--spacing-24), 680px);
     padding-top: var(--spacing-16);
-    padding-bottom: var(--spacing-32);
+    padding-bottom: var(--spacing-24);
+  }
+
+  .legal-shell {
+    width: min(100% - var(--spacing-24), 680px);
   }
 
   .two-columns,
@@ -2766,7 +2822,7 @@ body.theme-light .disclaimer-link:hover {
   .app-shell {
     width: calc(100% - var(--spacing-32));
     padding-top: var(--spacing-16);
-    padding-bottom: var(--spacing-24);
+    padding-bottom: var(--spacing-20);
   }
 
   .hero-panel {
@@ -3053,16 +3109,36 @@ body.theme-light .disclaimer-link:hover {
     font-size: 18px;
   }
 
+  .legal-content {
+    gap: var(--spacing-24);
+    padding-top: 0;
+  }
+
+  .legal-section {
+    gap: var(--spacing-8);
+  }
+
+  .legal-section h2 {
+    font-size: 18px;
+    line-height: 1.32;
+  }
+
+  .legal-section p {
+    font-size: 13px;
+    line-height: 1.56;
+  }
+
   .guide-return {
     margin-top: var(--spacing-32);
+    justify-content: center;
+    padding: var(--spacing-8) 0;
   }
 
   .guide-return a {
-    font-size: 14px;
-  }
-
-  .guide-return-button {
-    width: 100%;
+    max-width: calc(100% - var(--spacing-32));
+    min-height: 40px;
+    padding: 0 var(--spacing-20);
+    font-size: 13px;
   }
 
   .worked-example dl div {

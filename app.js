@@ -31,6 +31,17 @@ let selectedScheduleDuration = "4";
 let lastScheduleEvents = [];
 
 const eodFrequencyValue = "3.5";
+const languageStorageKey = "trt-calculator-language";
+const localizedPaths = {
+  howItWorks: {
+    bg: "./how-it-works.html",
+    en: "./how-it-works-en.html",
+  },
+  disclaimer: {
+    bg: "./disclaimer.html",
+    en: "./disclaimer-en.html",
+  },
+};
 
 const detectPreferredLanguage = () => {
   const browserLanguages = [
@@ -1185,11 +1196,23 @@ const setLanguage = (language) => {
   if (languageValue) {
     languageValue.textContent = language.toUpperCase();
   }
+  document.querySelectorAll("[data-language-href]").forEach((link) => {
+    const key = link.dataset.languageHref;
+    const href = localizedPaths[key]?.[language];
+    if (href) {
+      link.setAttribute("href", href);
+    }
+  });
 
   clearCopyFeedback();
   closeLanguageMenu();
   updateThemeButton();
   calculate();
+  try {
+    window.localStorage.setItem(languageStorageKey, language);
+  } catch {
+    // Local storage can be unavailable in embedded browsers.
+  }
 };
 
 const updateThemeButton = () => {
@@ -1384,6 +1407,13 @@ try {
   activeTheme = defaults.theme;
 }
 
-setLanguage(detectPreferredLanguage());
+let storedLanguage;
+try {
+  storedLanguage = window.localStorage.getItem(languageStorageKey);
+} catch {
+  storedLanguage = null;
+}
+
+setLanguage(copy[storedLanguage] ? storedLanguage : detectPreferredLanguage());
 setTheme(activeTheme);
 resetCalculator();
