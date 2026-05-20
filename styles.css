@@ -1038,6 +1038,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 13px;
   font-weight: 400;
   line-height: 1.45;
+  padding-left: var(--spacing-8);
 }
 
 .compound-inputs {
