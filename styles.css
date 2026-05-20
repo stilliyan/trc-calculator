@@ -83,7 +83,7 @@
   --text-secondary: rgba(245, 245, 245, 0.72);
   --text-tertiary: rgba(245, 245, 245, 0.62);
   --text-helper: rgba(245, 245, 245, 0.68);
-  --footer-muted: rgba(176, 176, 176, 0.54);
+  --footer-muted: rgba(215, 215, 215, 0.7);
   --button-bg: #ffffff;
   --button-text: #0a0a0a;
   --color-pitch-black: var(--page-bg);
@@ -126,11 +126,16 @@
   --leading-heading: 1.33;
   --tracking-heading: 0;
   --spacing-4: 4px;
+  --spacing-6: 6px;
   --spacing-8: 8px;
   --spacing-12: 12px;
+  --spacing-14: 14px;
   --spacing-16: 16px;
+  --spacing-18: 18px;
   --spacing-20: 20px;
+  --spacing-22: 22px;
   --spacing-24: 24px;
+  --spacing-28: 28px;
   --spacing-32: 32px;
   --spacing-40: 40px;
   --spacing-64: 64px;
@@ -281,7 +286,7 @@ button {
   align-items: center;
   justify-content: flex-end;
   flex: 0 0 auto;
-  gap: 0;
+  gap: 2px;
   padding-top: 4px;
 }
 
@@ -701,7 +706,7 @@ input:focus-visible,
   display: flex;
   width: fit-content;
   max-width: 320px;
-  margin: 0 auto var(--spacing-18, 18px);
+  margin: 0 auto var(--spacing-18);
   gap: 3px;
   border: 1px solid rgba(255, 255, 255, 0.055);
   border-radius: var(--radius-pill);
@@ -1251,7 +1256,7 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 1px solid rgba(255, 255, 255, 0.045);
   border-radius: 18px;
   background: #1a1a1a;
-  padding: var(--spacing-14, 14px);
+  padding: var(--spacing-14);
 }
 
 .schedule-frequency-label {
@@ -1617,7 +1622,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .syringe-module {
-  margin-top: var(--spacing-28, 28px);
+  margin-top: var(--spacing-28);
   border: 1px solid var(--color-soft-border);
   border-radius: 24px;
   background: #151515;
@@ -1627,7 +1632,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .syringe-summary {
   display: grid;
-  gap: var(--spacing-6, 6px);
+  gap: var(--spacing-6);
   margin-bottom: var(--spacing-20);
 }
 
@@ -1785,7 +1790,7 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: var(--spacing-40) auto 0;
   color: var(--footer-muted);
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.55;
   text-align: center;
 }
@@ -1795,7 +1800,7 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  margin: var(--spacing-28, 28px) auto 0;
+  margin: var(--spacing-28) auto 0;
   color: var(--footer-muted);
   font-size: 14px;
   line-height: 1.5;
@@ -2388,7 +2393,7 @@ body.theme-light .legal-dialog-body {
     flex-wrap: wrap;
     justify-content: flex-end;
     max-width: 100%;
-    gap: 0;
+    gap: 2px;
     padding-top: 2px;
   }
 
@@ -2446,7 +2451,7 @@ body.theme-light .legal-dialog-body {
   }
 
   .syringe-module {
-    padding: var(--spacing-22, 22px) var(--spacing-18, 18px);
+    padding: var(--spacing-22) var(--spacing-18);
   }
 
   .syringe-summary {
@@ -2463,7 +2468,7 @@ body.theme-light .legal-dialog-body {
   }
 
   .syringe-module .result-item {
-    padding: var(--spacing-18, 18px);
+    padding: var(--spacing-18);
   }
 
   .vial-usage-card {
@@ -2627,7 +2632,7 @@ body.theme-light .legal-dialog-body {
   }
 
   .schedule-window {
-    padding: var(--spacing-14, 14px);
+    padding: var(--spacing-14);
   }
 
   .schedule-weekday-row,
