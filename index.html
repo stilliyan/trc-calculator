@@ -37,7 +37,19 @@
     <script defer src="/_vercel/insights/script.js"></script>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
+  <body class="theme-dark">
+    <script>
+      (() => {
+        let theme = "dark";
+        try {
+          theme = window.localStorage.getItem("trt-calculator-theme") || "dark";
+        } catch {
+          theme = "dark";
+        }
+        document.body.classList.toggle("theme-light", theme === "light");
+        document.body.classList.toggle("theme-dark", theme !== "light");
+      })();
+    </script>
     <main class="app-shell" id="top">
       <section class="hero-panel" aria-labelledby="page-title">
         <div class="hero-topbar">
@@ -336,6 +348,7 @@
                   <div class="result-value-group">
                     <strong id="unitsPerInjection">7.1 единици</strong>
                     <small class="result-context" id="unitsResultHelper"></small>
+                    <small class="result-context" id="unitsBlendHelper"></small>
                   </div>
                 </div>
                 <div class="result-item">

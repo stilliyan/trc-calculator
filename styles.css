@@ -1520,7 +1520,6 @@ input[type="number"]::-webkit-outer-spin-button {
 .syringe-module .result-item {
   align-content: start;
   gap: 0;
-  grid-template-rows: auto 1fr;
   border-color: rgba(255, 255, 255, 0.055);
   background: #1c1c1c;
   padding: 14px var(--spacing-16);
@@ -1529,8 +1528,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .result-value-group {
   display: grid;
-  align-self: end;
-  gap: 4px;
+  gap: 5px;
   min-width: 0;
 }
 
@@ -1545,7 +1543,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .syringe-module .result-item > span {
   color: var(--text-secondary);
   font-weight: 400;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
 }
 
 .result-item strong,
@@ -1568,65 +1566,47 @@ input[type="number"]::-webkit-outer-spin-button {
   font-weight: 400;
 }
 
-.result-helper {
-  display: block;
-  color: var(--text-helper);
-  font-family: var(--font-inter-variable);
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.45;
-}
-
-.result-helper[hidden] {
-  display: none;
-}
-
-.result-context {
-  display: block;
-  color: var(--text-tertiary);
-  font-family: var(--font-inter-variable);
-  margin-top: 4px;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.35;
-}
-
-.blend-breakdown {
-  display: block;
-  max-width: 100%;
-  color: var(--text-helper);
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 1.45;
-  white-space: normal;
-  overflow-wrap: anywhere;
-}
-
-.blend-breakdown[hidden] {
-  display: none;
-}
-
+.result-helper,
+.result-context,
+.blend-breakdown,
 .weekly-blend-breakdown {
   display: block;
   max-width: 100%;
   color: var(--text-tertiary);
+  font-family: var(--font-inter-variable);
   font-size: 12px;
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 1.45;
   white-space: normal;
   overflow-wrap: anywhere;
 }
 
+.result-helper:empty,
+.result-helper[hidden],
+.result-context:empty,
+.result-context[hidden],
+.blend-breakdown:empty,
+.blend-breakdown[hidden],
+.weekly-blend-breakdown:empty,
+.weekly-blend-breakdown[hidden] {
+  display: none;
+}
+
+.blend-breakdown span {
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
 .weekly-blend-breakdown span {
   display: inline;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 .weekly-blend-breakdown span + span::before {
   content: "  •  ";
-}
-
-.weekly-blend-breakdown[hidden] {
-  display: none;
 }
 
 .syringe-module {

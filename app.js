@@ -122,6 +122,8 @@ const copy = {
     roundedFrom: "Закръглено от",
     usedForSyringeScale: "Използвано за U-100 скалата",
     unitRule: "1 единица = 0.01 mL",
+    unitRuleBlend: "1 единица = 0.01 mL",
+    unitBlendContext: "Според общия mL на бленда",
     basedOnFrequency: "Според избраната честота",
     everyDay: "Всеки ден",
     everyOtherDay: "През ден",
@@ -211,6 +213,8 @@ const copy = {
     roundedFrom: "Rounded from",
     usedForSyringeScale: "Used for U-100 scale",
     unitRule: "1 unit = 0.01 mL",
+    unitRuleBlend: "1 unit = 0.01 mL",
+    unitBlendContext: "Based on total blend mL",
     basedOnFrequency: "Based on selected frequency",
     everyDay: "Every day",
     everyOtherDay: "Every other day",
@@ -287,6 +291,7 @@ const output = {
   mlResultHelper: document.querySelector("#mlResultHelper"),
   unitsPerInjection: document.querySelector("#unitsPerInjection"),
   unitsResultHelper: document.querySelector("#unitsResultHelper"),
+  unitsBlendHelper: document.querySelector("#unitsBlendHelper"),
   weeklyAverageLabel: document.querySelector("#weeklyAverageLabel"),
   weeklyMl: document.querySelector("#weeklyMl"),
   weeklyResultHelper: document.querySelector("#weeklyResultHelper"),
@@ -808,6 +813,7 @@ const calculateWeekly = () => {
     output.mlResultHelper.textContent = valid ? getRoundedMlHelper(ml) : "";
     output.unitsPerInjection.textContent = `${formatCompact(units)} ${copy[activeLanguage].units}`;
     output.unitsResultHelper.textContent = valid ? strings.unitRule : "";
+    output.unitsBlendHelper.textContent = "";
     output.weeklyMl.textContent = `${formatCompact(weeklyMg, 2)} mg`;
     output.weeklyResultHelper.textContent = valid && !isEod ? strings.basedOnFrequency : "";
   }
@@ -886,7 +892,8 @@ const calculateBlend = () => {
     output.mgResultHelper.textContent = "";
     output.mlResultHelper.textContent = valid ? getRoundedMlHelper(injectionMl) : "";
     output.unitsPerInjection.textContent = `${formatCompact(units)} ${strings.units}`;
-    output.unitsResultHelper.textContent = valid ? strings.unitRule : "";
+    output.unitsResultHelper.textContent = valid ? strings.unitRuleBlend : "";
+    output.unitsBlendHelper.textContent = valid ? strings.unitBlendContext : "";
     output.weeklyMl.textContent = `${formatCompact(weeklyMg, 2)} mg`;
     output.weeklyResultHelper.textContent = valid && !isEod ? strings.basedOnFrequency : "";
   }
