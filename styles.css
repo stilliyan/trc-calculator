@@ -1340,6 +1340,11 @@ input[type="number"]::-webkit-outer-spin-button {
   line-height: 1.35;
 }
 
+.guide-card > h2 + .guide-lede {
+  margin-top: var(--spacing-8);
+  min-height: 3em;
+}
+
 .guide-subsection {
   display: grid;
   gap: var(--spacing-12);
@@ -3140,6 +3145,10 @@ body.theme-light .disclaimer-link:hover {
 
   .guide-card h2 {
     font-size: 18px;
+  }
+
+  .guide-card > h2 + .guide-lede {
+    min-height: 4.5em;
   }
 
   .legal-content {
