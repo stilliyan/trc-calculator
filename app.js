@@ -1228,6 +1228,8 @@ const updateThemeButton = () => {
 
 const setTheme = (theme) => {
   activeTheme = theme === "light" ? "light" : "dark";
+  document.documentElement.dataset.theme = activeTheme;
+  document.documentElement.style.colorScheme = activeTheme;
   document.body.classList.toggle("theme-light", activeTheme === "light");
   document.body.classList.toggle("theme-dark", activeTheme !== "light");
   try {

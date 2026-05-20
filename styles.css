@@ -151,6 +151,7 @@
   --component-input-x: 14px;
 }
 
+html[data-theme="light"] body,
 body.theme-light {
   --page-bg: #ffffff;
   --card-bg: #ffffff;
@@ -200,6 +201,14 @@ body.theme-light {
 
 * {
   box-sizing: border-box;
+}
+
+html.theme-preload *,
+html.theme-preload *::before,
+html.theme-preload *::after {
+  animation-duration: 0.001ms !important;
+  animation-delay: 0s !important;
+  transition: none !important;
 }
 
 [hidden],

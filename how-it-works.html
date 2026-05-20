@@ -36,9 +36,6 @@
         };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body class="theme-dark">
     <script>
       (() => {
         let theme = "dark";
@@ -47,8 +44,33 @@
         } catch {
           theme = "dark";
         }
+        theme = theme === "light" ? "light" : "dark";
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+        document.documentElement.classList.add("theme-preload");
+      })();
+    </script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="theme-dark">
+    <script>
+      (() => {
+        let theme = document.documentElement.dataset.theme || "dark";
+        try {
+          theme = window.localStorage.getItem("trt-calculator-theme") || theme;
+        } catch {
+          theme = "dark";
+        }
+        theme = theme === "light" ? "light" : "dark";
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
         document.body.classList.toggle("theme-light", theme === "light");
         document.body.classList.toggle("theme-dark", theme !== "light");
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            document.documentElement.classList.remove("theme-preload");
+          });
+        });
       })();
     </script>
 
@@ -250,6 +272,8 @@
         };
         button?.addEventListener("click", () => {
           const nextTheme = document.body.classList.contains("theme-light") ? "dark" : "light";
+          document.documentElement.dataset.theme = nextTheme;
+          document.documentElement.style.colorScheme = nextTheme;
           document.body.classList.toggle("theme-light", nextTheme === "light");
           document.body.classList.toggle("theme-dark", nextTheme !== "light");
           try {
