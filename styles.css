@@ -487,18 +487,10 @@ h1 {
   margin-top: var(--spacing-8);
   color: var(--text-secondary);
   font-size: 15px;
-  font-weight: 350;
+  /* Keep this on a real preloaded font weight to avoid text reflow on page changes. */
+  font-weight: 400;
   line-height: 1.48;
   white-space: pre-line;
-}
-
-.guide-hero .hero-copy {
-  min-height: 124px;
-}
-
-.guide-hero .hero-copy p {
-  max-width: 680px;
-  min-height: 2.96em;
 }
 
 .hero-helper-link {
@@ -1351,7 +1343,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .guide-card > h2 + .guide-lede {
   margin-top: var(--spacing-8);
-  min-height: 3em;
 }
 
 .guide-subsection {
@@ -3134,14 +3125,6 @@ body.theme-light .disclaimer-link:hover {
     margin-bottom: var(--spacing-24);
   }
 
-  .guide-hero .hero-copy {
-    min-height: 150px;
-  }
-
-  .guide-hero .hero-copy p {
-    min-height: 4.44em;
-  }
-
   .worked-example,
   .guide-definition-list {
     grid-template-columns: 1fr;
@@ -3162,10 +3145,6 @@ body.theme-light .disclaimer-link:hover {
 
   .guide-card h2 {
     font-size: 18px;
-  }
-
-  .guide-card > h2 + .guide-lede {
-    min-height: 4.5em;
   }
 
   .legal-content {
