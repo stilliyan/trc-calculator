@@ -72,11 +72,7 @@
         document.documentElement.style.colorScheme = theme;
         document.body.classList.toggle("theme-light", theme === "light");
         document.body.classList.toggle("theme-dark", theme !== "light");
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            document.documentElement.classList.remove("theme-preload");
-          });
-        });
+        document.documentElement.classList.remove("theme-preload");
       })();
     </script>
     <main class="app-shell" id="top">
