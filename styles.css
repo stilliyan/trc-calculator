@@ -1562,6 +1562,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 14px;
   font-weight: 510;
   line-height: 1.35;
+  padding-left: var(--spacing-8);
 }
 
 .formula-list code {
