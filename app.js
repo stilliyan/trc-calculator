@@ -71,7 +71,7 @@ const detectPreferredLanguage = () => {
 const copy = {
   bg: {
     title: "TRT Калкулатор",
-    documentTitle: "TRT Dose Calculator – Calculate Testosterone & Steroid Dosages",
+    documentTitle: "TRT Dosage Calculator – Weekly Dose, mg/ml & Injection Amount",
     subtitle: "Образователен калкулатор, който превръща седмична TRT цел или mL на инжекция в обем, U\u2011100 единици и реална седмична доза според честотата.",
     blendSubtitle: "Образователен калкулатор, който превръща mL на инжекция и концентрации по съставки в обща доза, U\u2011100 единици и седмична разбивка.",
     heroExample: "Виж как работи",
@@ -164,7 +164,7 @@ const copy = {
   },
   en: {
     title: "TRT Dosage Calculator",
-    documentTitle: "TRT Dose Calculator – Calculate Testosterone & Steroid Dosages",
+    documentTitle: "TRT Dosage Calculator – Weekly Dose, mg/ml & Injection Amount",
     subtitle: "Educational calculator that converts a TRT weekly target or mL per injection into volume, U-100 units, and the real weekly dose based on frequency.",
     blendSubtitle: "Educational calculator that converts mL per injection and compound concentrations into total dose, U-100 units, and weekly breakdown.",
     heroExample: "See how it works",
